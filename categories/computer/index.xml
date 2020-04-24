@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>computer on 张时中</title>
+    <link>http://blog.zhang.today/categories/computer/</link>
+    <description>Recent content in computer on 张时中</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
+    <lastBuildDate>Fri, 24 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://blog.zhang.today/categories/computer/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hugo搭建及自动部署（一）</title>
+      <link>http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</link>
+      <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</guid>
+      <description>hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的html，css，js文件。
+关键词：小程序；指定的目录结构；html、css、js文件
+以下所有步骤都围绕这是三个关键词进行，以下操作可能会遇到git的push不了，hugo因为环境变量不能运行等问题，请自行google
+实现关键词一：小程序  因此搭建的第一件事儿就是拿到这个小程序，在计算机上小程序的本质基本都是二进制文件，如windows的exe，linux和mac放在/usr/local/bin里的文件。在这里下载属于你系统的二进制文件。windows并不是很清楚，mac和linux的话，就跟以往一样，把下载到的压缩包解压，拿到hugo文件，移动到/usr/local/bin或者/usr/bin/里面。  补充：mac也可以用brew安装下载，brew install hugo ，但个人认为brew太慢了（可能被墙了），linux可以用apt-get和brew安装下载，但有个前提就是你的linux机器上有apt-get或者brew，apt-get下载到的不一定是新的，brew还需要安装，这一系列事情又需要时间，还有一堆错误等着。
+所以，个人推荐，直接用以上二进制的方法去得到这个小程序，这是我尝试过几种方法后的出来的结论，你可以不用花时间尝试了。
+# 测试你是否安装成功 $ hugo version 实现关键词二：固定目录结构和文件 得到了hugo程序，那么分解开始说的hugo的本质这句话，就是我们还需要一个目录结构给hugo读取。很显然，hugo会为我们考虑到  # 创建一个给hugo读取文件夹 $ hugo new site yourSiteName 这个yourSiteName就是你网站的名字，文件夹里的内容就是hugo读取用来生成html静态文件（啰嗦一句给小白，html文件就是一个个网页）的配置。
+这时候yourSiteName的文件夹结构，应该如下所示
+# yourSiteName的文件夹结构 . ├── archetypes │ └── default.md ├── config.toml ├── content ├── data ├── layouts ├── static └── themes 6 directories, 2 files 到这里先不要急着了解这些文件结构的意义，先跑起来 3. 安装主题 这一步很简单，比如我用的是hugo-swift-theme主题,cd进入到yourSiteName中
+$ git submodule add https://github.com/onweru/hugo-swift-theme themes/hugo-swift-theme $ echo &amp;#39;theme = &amp;#34;hugo-swift-theme&amp;#34;&amp;#39; &amp;gt;&amp;gt; config.</description>
+    </item>
+    
+    <item>
+      <title>hugo搭建及自动部署（一）</title>
+      <link>http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/</link>
+      <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/</guid>
+      <description>自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就可以访问了，那这里为什么叫自动部署呢？自动一词体现在哪儿呢？
+按照之前的思路：
+首先配置基于nginx的静态网站，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。
+ 写博客 hugo生成静态文件 删掉服务端旧的静态文件目录，ssh scp到服务端的已经配置好的静态目录  这里给出我的nginx配置，仅供参考
+$ cat /etc/nginx/nginx.conf user 用户; worker_processes auto; pid /run/nginx.pid; events { worker_connections 768; # multi_accept on; } include /etc/nginx/conf.d/*.conf; include /etc/nginx/sites-enabled/*; server { listen 80; server_name 你的域名.com; root 你的静态文件夹; index index.html; location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|js|pdf|txt){ root /root/blog2020; } location ^~ /webhook { proxy_pass http://localhost:8002; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; } } } 需要注意这么几个点(配置里面的中文部分)：
+ user 用户  这里要注意一个权限的问题，要保证nginx配置文件的权限合理，一般是www-data。这里用户二字要和你的静态文件用户对应,不然就是403。怎么看一个文件属于哪个用户？ll命令</description>
+    </item>
+    
+  </channel>
+</rss>

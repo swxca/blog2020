@@ -8,6 +8,16 @@
   </url>
   
   <url>
+    <loc>http://blog.zhang.today/categories/</loc>
+    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.zhang.today/categories/computer/</loc>
+    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhang.today/tags/golang/</loc>
     <lastmod>2020-04-24T00:00:00+00:00</lastmod>
   </url>
@@ -60,14 +70,6 @@
   <url>
     <loc>http://blog.zhang.today/post/migrate-from-jekyll/</loc>
     <lastmod>2014-03-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://blog.zhang.today/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>http://blog.zhang.today/categories/categories/computer/</loc>
   </url>
   
 </urlset>
