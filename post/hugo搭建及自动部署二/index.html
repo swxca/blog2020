@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <title>Hugo搭建及自动部署（一） | 张时中</title>
+  <meta charset='utf-8'>
+  <meta name="generator" content="Hugo 0.69.1" />
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  
+<meta property = 'og:locale' content = 'en_US' />
+<meta property="og:type" content="article">
+<meta property = 'og:title' content = 'hugo搭建及自动部署（一）' />
+<meta name="description" content="自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就好了，那这里为什么叫自动部署呢？
+按照之前的思路： 首先配置基于nginx的静态网站，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。
+ 写博客 hugo生成静态文件 删掉服务端旧 …">
+<meta property = 'og:description' content = '自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就好了，那这里为什么叫自动部署呢？
+按照之前的思路： 首先配置基于nginx的静态网站，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。
+ 写博客 hugo生成静态文件 删掉服务端旧 …'>
+<meta property = 'og:url' content = 'http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/' />
+<meta property = 'og:image' content = 'http://blog.zhang.today/images/artist.jpg'/>
+<meta name = 'twitter:card' content = 'summary_large_image' />
+<meta name = 'twitter:creator' content = ''>
+<meta name = 'twitter:title' content = 'hugo搭建及自动部署（一）' />
+<meta property = 'twitter:description'  content = '自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就好了，那这里为什么叫自动部署呢？
+按照之前的思路： 首先配置基于nginx的静态网站，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。
+ 写博客 hugo生成静态文件 删掉服务端旧 …'/>
+<meta name = 'twitter:image' content = 'http://blog.zhang.today/images/artist.jpg' />
+<link rel='apple-touch-icon' sizes='180x180' href='http://blog.zhang.today/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='http://blog.zhang.today/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='http://blog.zhang.today/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='http://blog.zhang.today/images/icons/site.webmanifest'>
+
+  <link rel='canonical' href='http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/'>
+  <link rel = 'stylesheet' href = 'http://blog.zhang.today/css/styles.bf17aa32e654a5aa2f07d98bd607a95ff5e36b1f2ea241df0e352fa1cf427067f76b5d01fceacecc8e434805edeedc29099c0132e224fd6ba8148b7f0cbde26f.css' integrity = 'sha512-vxeqMuZUpaovB9mL1gepX/Xjax8uokHfDjUvoc9CcGf3a10B/OrOzI5DSAXt7twpCZwBMuIk/WuoFIt/DL3ibw=='>
+</head>
+
+  <body><div class = 'nav-drop'>
+  <div class = 'nav-body'>
+      <a href = 'http://blog.zhang.today/about/' class = 'nav_item'>关于我</a>
+      <a href = 'http://blog.zhang.today/' class = 'nav_item'>博客</a>
+      <a href = 'http://blog.zhang.today/categories/heart/' class = 'nav_item'>阳明心学</a>
+      <a href = 'http://blog.zhang.today/categories/computer/' class = 'nav_item'>计算机技术</a>
+      <a href = 'http://blog.zhang.today/tags/go/' class = 'nav_item'>go-tag</a>
+      <a href = 'http://blog.zhang.today/tags/hugo' class = 'nav_item'>hugo-theme-learning</a>
+    <div class = 'nav-close'></div>
+  </div>
+</div><header class = 'nav' >
+  <nav class = 'nav-menu'>
+    <a href='http://blog.zhang.today/' class = 'nav-brand nav_item'>张时中</a>
+    <div class = 'nav_bar-wrap'>
+      <div class = 'nav_bar'></div>
+    </div>
+  </nav>
+</header>
+
+
+    <main>
+<section class = 'post_header' style = 'background-image:url(http://blog.zhang.today/images/artist.jpg);'>
+  <h1 class='post_title'>hugo搭建及自动部署（一）</h1>
+</section>
+<div class = 'post'>
+  <article class='post_content'><h2 id="自动部署">自动部署</h2>
+<p><strong>接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就好了，那这里为什么叫自动部署呢？</strong></p>
+<p>按照之前的思路：
+首先<a href="https://segmentfault.com/a/1190000010487262">配置基于nginx的静态网站</a>，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。</p>
+<ol>
+<li>写博客</li>
+<li>hugo生成静态文件</li>
+<li>删掉服务端旧的静态文件目录，ssh</li>
+<li>scp到服务端的已经配置好的静态目录</li>
+</ol>
+<p><strong>这里给出我的nginx配置，仅供参考</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ cat /etc/nginx/nginx.conf 
+user 用户;
+worker_processes auto;
+pid /run/nginx.pid;
+
+events {
+	worker_connections 768;
+	# multi_accept on;
+}
+
+	include /etc/nginx/conf.d/*.conf;
+	include /etc/nginx/sites-enabled/*;
+	server {
+                listen 80;
+                server_name 你的域名.com;
+		root 你的静态文件夹;
+  		index index.html; 
+  		location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|js|pdf|txt){
+    			root /root/blog2020;
+  		}
+		location ^~ /webhook {
+		        proxy_pass     http://localhost:8002;
+        		proxy_set_header  Host       $host;
+        		proxy_set_header  X-Real-IP    $remote_addr;
+        		proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+		} 
+        }
+}
+</code></pre></div><p><strong>需要注意这么几个点(配置里面的中文部分)：</strong></p>
+<ol>
+<li>user 用户</li>
+</ol>
+<p>这里要注意一个权限的问题，要保证nginx配置文件的权限合理，一般是www-data。这里用户二字要和你的静态文件用户对应,不然就是403。怎么看一个文件属于哪个用户？ll命令</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ ll
+drwxr-xr-x 12 root root  4096 Apr 24 03:33 blog2020/
+</code></pre></div><ol start="2">
+<li>你的域名.com</li>
+</ol>
+<p>换成你自己的
+3. 你的静态文件夹，就是你scp过来的静态文件路径。</p>
+<p>但是每次都这么做，未免也太麻烦，ssh上去删掉，scp发过来。。。因此，大家又想出了一个比较省事儿的方法</p>
+<p>每次增加博客都是一次增量更新，scp做不到增量，那只有删除再创建。文件的增量更新自然就想到了git。github正好有一个叫<strong>webhooks</strong>的配置项，简单说，就是你的github项目，有一些操作，如git push，git pull等，webhooks会给你配置好的api接口发一些消息。</p>
+<p>这样，当你更新博客的时候，hugo之后，就git push静态文件夹到github，webhooks给你的api接口发消息，你的api接口收到后，git pull这个静态文件夹，这样就实现了自动部署</p>
+<ol>
+<li>写博客</li>
+<li>git push</li>
+</ol>
+<p>简单很多</p>
+<p>以上，看到这儿，原理明白了，那你需要做两件事儿：</p>
+<ol>
+<li>把你的静态文件夹变成一个github项目，类型是public</li>
+<li>做一个api接口，接收到webhooks的请求后，用脚本pull代码。</li>
+<li>将这个api跑在对应的域名上，让github给你发消息的时候，能连通。</li>
+</ol>
+<p><img src="../../themes/hugo-swift-theme/images/git_webhooks.jpg" alt="github_webhooks" title="github_webhooks"></p>
+<hr>
+<p>这个api接口，别人已经写好了，用go语言写的。<a href="https://github.com/go-playground/webhooks">点这里</a></p>
+<hr>
+<p>贴出我的，仅供参考</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">const</span> (
+	<span style="color:#a6e22e">path</span> = <span style="color:#e6db74">&#34;/webhook&#34;</span>
+)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">hook</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">New</span>(<span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">Options</span>.<span style="color:#a6e22e">Secret</span>(<span style="color:#e6db74">&#34;yourSecret....&#34;</span>))
+
+	<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">HandleFunc</span>(<span style="color:#a6e22e">path</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) {
+		<span style="color:#a6e22e">payload</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">hook</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">r</span>, <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">PushEvent</span>)
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">ErrEventNotFound</span> {
+				<span style="color:#75715e">// ok event wasn;t one of the ones asked to be parsedclear
+</span><span style="color:#75715e"></span>			}
+		}
+		<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">payload</span>.(<span style="color:#66d9ef">type</span>) {
+
+		<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">PushPayload</span>:
+			<span style="color:#a6e22e">push</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">payload</span>.(<span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">PushPayload</span>)
+			<span style="color:#a6e22e">fullname</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">push</span>.<span style="color:#a6e22e">Repository</span>.<span style="color:#a6e22e">FullName</span>
+			<span style="color:#75715e">// ./deploy.sh (git pull) 自己写一个git pull的sh脚本,然后用go的cmd跑起来
+</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">deploy</span>()
+			<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;deploy %s result:\n%s&#34;</span>, <span style="color:#a6e22e">fullname</span>, <span style="color:#a6e22e">result</span>)
+		}
+	})
+	<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ListenAndServe</span>(<span style="color:#e6db74">&#34;:8002&#34;</span>, <span style="color:#66d9ef">nil</span>)
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span><span style="color:#f92672">!=</span><span style="color:#66d9ef">nil</span>{
+		panic(<span style="color:#a6e22e">err</span>)
+	}
+}
+</code></pre></div>
+    <div class = 'post_extra'><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
+  <svg>
+    <use xlink:href="#copy"></use>
+  </svg>  
+</div>
+
+    </div>
+  <div class = 'author'>
+    <a href = '' target = "张时中's profile" class = 'author_pic'>
+      <img src = 'http://blog.zhang.today/images/%E5%BC%A0%E6%97%B6%E4%B8%AD.jpg' alt = ''>
+    </a>
+    <div class = 'author_meta'>
+      <a class = 'author_name' href = '' title = "map[Count:张时中]&#39;s profile">张时中</a>
+      <p class = 'pale author_bio solo'>力求用最朴素的思维和语言，解释清楚每一个知识点</p>
+    </div>
+  </div>
+
+  </article>
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'kil9nDon6gQoCfT1ipG1WVkD-gzGzoHsz',
+        appKey: '5G9LaVE9valii0rVlefUHQO0',
+        notify: 'false', 
+        verify: 'false', 
+        avatar:'gg', 
+        placeholder: '说点什么吧...',
+        visitor: 'true'
+    });
+  </script>
+
+  <aside><h3>More from 张时中</h3>
+<ul class='posts aside'>
+<li class = 'post_item'>
+  <a class = 'post_card' href='http://blog.zhang.today/post/creating-a-new-theme/' title = 'Creating a New Theme' style = 'background-image: url(http://blog.zhang.today/images/artist.jpg);'>
+  </a>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_meta'>
+      <a href = 'http://blog.zhang.today/tags/hugo' class = 'post_tag'>hugo
+      </a><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
+  <svg>
+    <use xlink:href="#copy"></use>
+  </svg>  
+</div>
+
+    </div>
+    <h3 class = 'post_link'>
+      <a href='http://blog.zhang.today/post/creating-a-new-theme/'>Creating a New Theme</a>
+    </h3>
+    <p class = 'pale'>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume …</p>
+  </div>
+</li>
+
+<li class = 'post_item'>
+  <a class = 'post_card' href='http://blog.zhang.today/post/goisforlovers/' title = '(Hu)go Template Primer' style = 'background-image: url(http://blog.zhang.today/images/fast-lane.jpg);'>
+  </a>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_meta'>
+      <a href = 'http://blog.zhang.today/tags/hugo' class = 'post_tag'>hugo
+      </a><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
+  <svg>
+    <use xlink:href="#copy"></use>
+  </svg>  
+</div>
+
+    </div>
+    <h3 class = 'post_link'>
+      <a href='http://blog.zhang.today/post/goisforlovers/'>(Hu)go Template Primer</a>
+    </h3>
+    <p class = 'pale'>Hugo uses the excellent Go html/template library for its template engine. It is an …</p>
+  </div>
+</li>
+
+</ul>
+
+  </aside>
+</div>
+<script src = 'http://blog.zhang.today/js/autosize.min.js'></script>
+<script src = 'http://blog.zhang.today/js/timeago.js'></script>
+    </main><svg width="0" height="0" class="hidden">
+  <symbol viewBox="0 0 699.428 699.428" xmlns="http://www.w3.org/2000/svg" id="copy">
+    <path d="M502.714 0H240.428C194.178 0 153 42.425 153 87.429l-25.267.59c-46.228 0-84.019 41.834-84.019 86.838V612c0 45.004 41.179 87.428 87.429 87.428H459c46.249 0 87.428-42.424 87.428-87.428h21.857c46.25 0 87.429-42.424 87.429-87.428v-349.19zM459 655.715H131.143c-22.95 0-43.714-21.441-43.714-43.715V174.857c0-22.272 18.688-42.993 41.638-42.993l23.933-.721v393.429C153 569.576 194.178 612 240.428 612h262.286c0 22.273-20.765 43.715-43.714 43.715zm153-131.143c0 22.271-20.765 43.713-43.715 43.713H240.428c-22.95 0-43.714-21.441-43.714-43.713V87.429c0-22.272 20.764-43.714 43.714-43.714H459c-.351 50.337 0 87.975 0 87.975 0 45.419 40.872 86.882 87.428 86.882H612zm-65.572-349.715c-23.277 0-43.714-42.293-43.714-64.981V44.348L612 174.857zm-43.714 131.537H306c-12.065 0-21.857 9.77-21.857 21.835s9.792 21.835 21.857 21.835h196.714c12.065 0 21.857-9.771 21.857-21.835 0-12.065-9.792-21.835-21.857-21.835zm0 109.176H306c-12.065 0-21.857 9.77-21.857 21.834 0 12.066 9.792 21.836 21.857 21.836h196.714c12.065 0 21.857-9.77 21.857-21.836 0-12.064-9.792-21.834-21.857-21.834z"
+    ></path>
+  </symbol>
+  <symbol viewBox="0 0 60.015 60.015" xmlns="http://www.w3.org/2000/svg" id="reply">
+    <path d="M42.007 0h-24c-9.925 0-18 8.075-18 18v14c0 9.59 7.538 17.452 17 17.973v8.344a1.694 1.694 0 0 0 1.699 1.698c.44 0 .873-.173 1.198-.498l1.876-1.876C26.708 52.713 33.259 50 40.227 50h1.78c9.925 0 18-8.075 18-18V18c0-9.925-8.075-18-18-18zm16 32c0 8.822-7.178 16-16 16h-1.78c-7.502 0-14.556 2.921-19.86 8.226l-1.359 1.359V44a1 1 0 1 0-2 0v3.949c-8.356-.52-15-7.465-15-15.949V18c0-8.822 7.178-16 16-16h24c8.822 0 16 7.178 16 16v14z"></path>
+  </symbol>
+</svg>
+<footer class = 'footer'>
+  <div class = 'footer_inner wrap pale'>
+    <p>&copy;&nbsp;<span class = 'year'></span>&nbsp;张时中.
+    Designed by  <a href = '<no value>' title = 'Linkedin Profile'>张时中</a></p>
+  </div>
+</footer>
+<script src = 'http://blog.zhang.today/js/index.min.56014eb00b47a2f69cfeb38ce036f1b5129cac91d08e354a6ff26872e77fce3571caff31f49435056a7fa0cc950b179d8e38c4042989ad67743976ea5b6e9a71.js'></script>
+
+  </body>
+</html>
