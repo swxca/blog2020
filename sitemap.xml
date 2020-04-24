@@ -18,7 +18,17 @@
   </url>
   
   <url>
+    <loc>http://blog.zhang.today/tags/hugo/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhang.today/post/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.zhang.today/tags/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
   </url>
   
@@ -29,16 +39,6 @@
   
   <url>
     <loc>http://blog.zhang.today/post/hugoisforlovers/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://blog.zhang.today/tags/hugo/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://blog.zhang.today/tags/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url>
   
