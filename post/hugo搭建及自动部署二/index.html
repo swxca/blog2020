@@ -9,20 +9,20 @@
 <meta property = 'og:locale' content = 'en_US' />
 <meta property="og:type" content="article">
 <meta property = 'og:title' content = 'hugo搭建及自动部署（一）' />
-<meta name="description" content="自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就好了，那这里为什么叫自动部署呢？
-按照之前的思路： 首先配置基于nginx的静态网站，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。
- 写博客 hugo生成静态文件 删掉服务端旧 …">
-<meta property = 'og:description' content = '自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就好了，那这里为什么叫自动部署呢？
-按照之前的思路： 首先配置基于nginx的静态网站，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。
- 写博客 hugo生成静态文件 删掉服务端旧 …'>
+<meta name="description" content="自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就可以访问了，那这里为什么叫自动部署呢？自动一词体现在哪儿呢？
+按照之前的思路：
+首先配置基于nginx的静态网站，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。 …">
+<meta property = 'og:description' content = '自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就可以访问了，那这里为什么叫自动部署呢？自动一词体现在哪儿呢？
+按照之前的思路：
+首先配置基于nginx的静态网站，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。 …'>
 <meta property = 'og:url' content = 'http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/' />
 <meta property = 'og:image' content = 'http://blog.zhang.today/images/artist.jpg'/>
 <meta name = 'twitter:card' content = 'summary_large_image' />
 <meta name = 'twitter:creator' content = ''>
 <meta name = 'twitter:title' content = 'hugo搭建及自动部署（一）' />
-<meta property = 'twitter:description'  content = '自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就好了，那这里为什么叫自动部署呢？
-按照之前的思路： 首先配置基于nginx的静态网站，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。
- 写博客 hugo生成静态文件 删掉服务端旧 …'/>
+<meta property = 'twitter:description'  content = '自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就可以访问了，那这里为什么叫自动部署呢？自动一词体现在哪儿呢？
+按照之前的思路：
+首先配置基于nginx的静态网站，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。 …'/>
 <meta name = 'twitter:image' content = 'http://blog.zhang.today/images/artist.jpg' />
 <link rel='apple-touch-icon' sizes='180x180' href='http://blog.zhang.today/images/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='http://blog.zhang.today/images/icons/favicon-32x32.png'>
@@ -59,9 +59,9 @@
 </section>
 <div class = 'post'>
   <article class='post_content'><h2 id="自动部署">自动部署</h2>
-<p><strong>接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就好了，那这里为什么叫自动部署呢？</strong></p>
-<p>按照之前的思路：
-首先<a href="https://segmentfault.com/a/1190000010487262">配置基于nginx的静态网站</a>，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。</p>
+<p><strong>接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就可以访问了，那这里为什么叫自动部署呢？自动一词体现在哪儿呢？</strong></p>
+<p>按照之前的思路：</p>
+<p>首先<a href="https://segmentfault.com/a/1190000010487262">配置基于nginx的静态网站</a>，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。</p>
 <ol>
 <li>写博客</li>
 <li>hugo生成静态文件</li>
@@ -107,11 +107,15 @@ drwxr-xr-x 12 root root  4096 Apr 24 03:33 blog2020/
 </code></pre></div><ol start="2">
 <li>你的域名.com</li>
 </ol>
-<p>换成你自己的
-3. 你的静态文件夹，就是你scp过来的静态文件路径。</p>
-<p>但是每次都这么做，未免也太麻烦，ssh上去删掉，scp发过来。。。因此，大家又想出了一个比较省事儿的方法</p>
-<p>每次增加博客都是一次增量更新，scp做不到增量，那只有删除再创建。文件的增量更新自然就想到了git。github正好有一个叫<strong>webhooks</strong>的配置项，简单说，就是你的github项目，有一些操作，如git push，git pull等，webhooks会给你配置好的api接口发一些消息。</p>
-<p>这样，当你更新博客的时候，hugo之后，就git push静态文件夹到github，webhooks给你的api接口发消息，你的api接口收到后，git pull这个静态文件夹，这样就实现了自动部署</p>
+<p>换成你自己的</p>
+<ol start="3">
+<li>你的静态文件夹，就是你scp过来的静态文件路径。</li>
+</ol>
+<p>但是每次都这么做，未免也太麻烦，ssh上去删掉，scp发过来。。。因此，大家又想出了一个比较省事儿的方法。</p>
+<p>每次增加博客都是一次增量更新，scp做不到增量，那只有删除再创建。文件的增量更新自然就想到了git。</p>
+<p>github正好有一个叫<strong>webhooks</strong>的配置项，简单说，就是你的github项目，有一些操作，如git push，git pull等，webhooks会给你配置好的api接口发一些消息。</p>
+<p>这样，当你更新博客时，hugo执行完成，就git push静态文件夹到github，webhooks给你的api接口发消息，你的api接口收到后，git pull这个静态文件夹，这样就实现了自动部署</p>
+<p>这时候你的工作流程就是：</p>
 <ol>
 <li>写博客</li>
 <li>git push</li>
