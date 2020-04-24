@@ -6,10 +6,23 @@
     <description>Recent content on 张时中</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
-    <lastBuildDate>Wed, 09 Apr 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 24 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://blog.zhang.today/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About Hugo</title>
+      <link>http://blog.zhang.today/about/</link>
+      <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.zhang.today/about/</guid>
+      <description>君子之中庸也,君子而时中，未有知而不行者，知而不行只是未知，如好好色，如恶恶臭。穷极天理要从心上求，心外无物，此运通达，此心光明。
+新开一个博客，内容主要想写两方面：  对古代哲学的所想所习 对计算机技术的理解  力求用最简单的语言，描述清楚各知识点的由来、发展、现状和使用。 （内容仅为自己感悟，请谨慎参考。发表只为让更多人不要把时间浪费在找google上，只看这里就够了。）
+什么是知识？ 维基百科上，知识就是经由前人的经验累积形成的。 我理解的知识就是人们对事物的认识，研究多就认识深，研究少就认识浅。比如我们看到下雨就知道打伞，其实也是知识的一种，只是比较简单。代码也一样，只不过就是前人的经验积累，一切技术的概念都是水到渠成而来，因此，学习代码并不难，反而跟吃饭喝水一样顺理成章，之所以我们有时候觉得难，很多时候是因为顺序搞错了，这样就产生了信息差。
+从计算机的技术的角度讲，无非多是从两方面发展
+ 从理论到实践 有空再填 从实践到理论，比如，Internet网络，七层架构，五层架构等等都是从实践从慢慢演化而来的（想具体了解，可以看黑皮书 计算机网络），才形成了我们今天的计算机网络理论体系。如果我们在学习的过程中，看到网络层，老去想为什么这样设计？难道不可以那样设计吗？答案当然是可以的（只不过你设计出来可能没法跟其他网络兼容）。那为什么就形成了今天我们看到的设计呢？其实开始设计的时候并没有这样一个指导性的理论体系，这就是一个典型的从实践到理论的过程，之所以这么设计是因为开始的时候并没有完善的体系，前人在不断实践中，比如，网络层和传输层混在一起了，觉得不好耦合性太高，那就分开试试，这样慢慢地才形成了如今的计算机网络，才得出了这么一套理论体系。  有些东西是先出理论，再出应用，有些东西是在应用中，总结出一套理论体系。同时实践和理论又在发展中不断交融。</description>
+    </item>
     
     <item>
       <title>Creating a New Theme</title>
@@ -19,17 +32,6 @@
       <guid>http://blog.zhang.today/post/creating-a-new-theme/</guid>
       <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
 We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
-    </item>
-    
-    <item>
-      <title>About Hugo</title>
-      <link>http://blog.zhang.today/about/</link>
-      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://blog.zhang.today/about/</guid>
-      <description>Hugo is the world’s fastest framework for building websites. It is written in Go.
-It makes use of a variety of open source projects including:
- https://github.com/russross/blackfriday https://github.com/alecthomas/chroma https://github.com/muesli/smartcrop https://github.com/spf13/cobra https://github.com/spf13/viper  Learn more and contribute on GitHub.</description>
     </item>
     
     <item>
