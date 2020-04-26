@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang='en'><head>
-  <title>Posts | 张时中</title>
+  <title>Nsq全解析（一） 整体篇 | 张时中</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.69.1" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
   <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  
 <meta property = 'og:locale' content = 'en_US' />
 <meta property="og:type" content="article">
-<meta property = 'og:title' content = 'Posts' />
+<meta property = 'og:title' content = 'nsq全解析（一）---整体篇' />
 <meta name="description" content="">
 <meta property = 'og:description' content = ''>
-<meta property = 'og:url' content = 'http://blog.zhang.today/post/' />
-<meta property = 'og:image' content = 'images/%!s()'/>
+<meta property = 'og:url' content = 'http://blog.zhang.today/post/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%85%A8%E8%A7%A3%E6%9E%90%E4%B8%80-%E6%95%B4%E4%BD%93%E7%AF%87/' />
+<meta property = 'og:image' content = 'http://blog.zhang.today/images/artist.jpg'/>
 <meta name = 'twitter:card' content = 'summary_large_image' />
 <meta name = 'twitter:creator' content = ''>
-<meta name = 'twitter:title' content = 'Posts' />
+<meta name = 'twitter:title' content = 'nsq全解析（一）---整体篇' />
 <meta property = 'twitter:description'  content = ''/>
-<meta name = 'twitter:image' content = 'images/%!s()' />
+<meta name = 'twitter:image' content = 'http://blog.zhang.today/images/artist.jpg' />
 <link rel='apple-touch-icon' sizes='180x180' href='http://blog.zhang.today/images/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='http://blog.zhang.today/images/icons/favicon-32x32.png'>
 <link rel='icon' type='image/png' sizes='16x16' href='http://blog.zhang.today/images/icons/favicon-16x16.png'>
 <link rel='manifest' href='http://blog.zhang.today/images/icons/site.webmanifest'>
 
-  <link rel='canonical' href='http://blog.zhang.today/post/'>
+  <link rel='canonical' href='http://blog.zhang.today/post/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%85%A8%E8%A7%A3%E6%9E%90%E4%B8%80-%E6%95%B4%E4%BD%93%E7%AF%87/'>
   <link rel = 'stylesheet' href = 'http://blog.zhang.today/css/styles.bf17aa32e654a5aa2f07d98bd607a95ff5e36b1f2ea241df0e352fa1cf427067f76b5d01fceacecc8e434805edeedc29099c0132e224fd6ba8148b7f0cbde26f.css' integrity = 'sha512-vxeqMuZUpaovB9mL1gepX/Xjax8uokHfDjUvoc9CcGf3a10B/OrOzI5DSAXt7twpCZwBMuIk/WuoFIt/DL3ibw=='>
 </head>
 
@@ -47,26 +48,48 @@
 
 
     <main>
-<div class = 'intro'>
-  <div class = 'intro_inner'>
-    <div><div class = 'waves'>
-  <canvas id = 'waves' class = 'waves_inner'></canvas>
+<section class = 'post_header' style = 'background-image:url(http://blog.zhang.today/images/artist.jpg);'>
+  <h1 class='post_title'>nsq全解析（一）---整体篇</h1>
+</section>
+<div class = 'post'>
+  <article class='post_content'>
+    <div class = 'post_extra'><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
+  <svg>
+    <use xlink:href="#copy"></use>
+  </svg>  
 </div>
-<script src =  'http://blog.zhang.today/js/sine-waves.min.js'></script>
-<script src = 'http://blog.zhang.today/js/audio.js'></script>
-</div>
-    <section>
-      <h1 class = 'intro_headline'>Posts</h1>
-      <p class = 'intro_desc'></p>
-    </section>
+
+    </div>
+  <div class = 'author'>
+    <a href = '' target = "张时中's profile" class = 'author_pic'>
+      <img src = 'http://blog.zhang.today/images/%E5%BC%A0%E6%97%B6%E4%B8%AD.jpg' alt = ''>
+    </a>
+    <div class = 'author_meta'>
+      <a class = 'author_name' href = '' title = "map[Count:张时中]&#39;s profile">张时中</a>
+      <p class = 'pale author_bio solo'>力求用最朴素的思维和语言，解释清楚每一个知识点</p>
+    </div>
   </div>
-</div>
 
+  </article>
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'kil9nDon6gQoCfT1ipG1WVkD-gzGzoHsz',
+        appKey: '5G9LaVE9valii0rVlefUHQO0',
+        notify: 'false', 
+        verify: 'false', 
+        avatar:'gg', 
+        placeholder: '说点什么吧...',
+        visitor: 'true'
+    });
+  </script>
 
-
-
-<ul class='posts wrap' id = 'posts'>
-    
+  <aside><h3>More from 张时中</h3>
+<ul class='posts aside'>
 <li class = 'post_item'>
   <a class = 'post_card' href='http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/' title = 'hugo搭建及自动部署（一）' style = 'background-image: url(http://blog.zhang.today/images/artist.jpg);'>
   </a>
@@ -83,12 +106,11 @@
     <h3 class = 'post_link'>
       <a href='http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/'>hugo搭建及自动部署（一）</a>
     </h3>
-    <p class = 'pale'>hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的静态资源文件（包括html，css，js）。
-关键词：小程序；指定的目录结构；静态资源文 …</p>
+    <p class = 'pale'>hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的html，css，js文件。
+关键词：小程序；指定的目录结构；html、css、js …</p>
   </div>
 </li>
 
-    
 <li class = 'post_item'>
   <a class = 'post_card' href='http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/' title = 'hugo搭建及自动部署（一）' style = 'background-image: url(http://blog.zhang.today/images/artist.jpg);'>
   </a>
@@ -110,97 +132,12 @@
   </div>
 </li>
 
-    
-<li class = 'post_item'>
-  <a class = 'post_card' href='http://blog.zhang.today/post/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/' title = '消息队列nsq工作流程解析（一）---nsqd组件.md' style = 'background-image: url(http://blog.zhang.today/images/artist.jpg);'>
-  </a>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_meta'>
-      <a href = 'http://blog.zhang.today/tags/%E5%B7%A5%E5%85%B7%E6%A1%86%E6%9E%B6' class = 'post_tag'>工具框架
-      </a><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
-  <svg>
-    <use xlink:href="#copy"></use>
-  </svg>  
-</div>
-
-    </div>
-    <h3 class = 'post_link'>
-      <a href='http://blog.zhang.today/post/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/'>消息队列nsq工作流程解析（一）---nsqd组件.md</a>
-    </h3>
-    <p class = 'pale'> 这系列文章我想从0开始，在读者的心中构建一个完整的nsq消息队列模型 包括但不限于以下知识点
- nsq整体工作流程 nsq各组件工作细节 nsq代码实战 nsq源码解析   那么 …</p>
-  </div>
-</li>
-
-    
-<li class = 'post_item'>
-  <a class = 'post_card' href='http://blog.zhang.today/post/creating-a-new-theme/' title = 'Creating a New Theme' style = 'background-image: url(http://blog.zhang.today/images/artist.jpg);'>
-  </a>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_meta'>
-      <a href = 'http://blog.zhang.today/tags/hugo' class = 'post_tag'>hugo
-      </a><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
-  <svg>
-    <use xlink:href="#copy"></use>
-  </svg>  
-</div>
-
-    </div>
-    <h3 class = 'post_link'>
-      <a href='http://blog.zhang.today/post/creating-a-new-theme/'>Creating a New Theme</a>
-    </h3>
-    <p class = 'pale'>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume …</p>
-  </div>
-</li>
-
 </ul>
 
-<ul class="pagination">
-    
-    <li class="page-item">
-        <a href="http://blog.zhang.today/post/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item disabled">
-    <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="http://blog.zhang.today/post/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="http://blog.zhang.today/post/page/2/">2</a></li>
-    
-    
-    <li class="page-item">
-    <a href="http://blog.zhang.today/post/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="http://blog.zhang.today/post/page/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
-</ul>
-
-
-
+  </aside>
+</div>
+<script src = 'http://blog.zhang.today/js/autosize.min.js'></script>
+<script src = 'http://blog.zhang.today/js/timeago.js'></script>
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 699.428 699.428" xmlns="http://www.w3.org/2000/svg" id="copy">
     <path d="M502.714 0H240.428C194.178 0 153 42.425 153 87.429l-25.267.59c-46.228 0-84.019 41.834-84.019 86.838V612c0 45.004 41.179 87.428 87.429 87.428H459c46.249 0 87.428-42.424 87.428-87.428h21.857c46.25 0 87.429-42.424 87.429-87.428v-349.19zM459 655.715H131.143c-22.95 0-43.714-21.441-43.714-43.715V174.857c0-22.272 18.688-42.993 41.638-42.993l23.933-.721v393.429C153 569.576 194.178 612 240.428 612h262.286c0 22.273-20.765 43.715-43.714 43.715zm153-131.143c0 22.271-20.765 43.713-43.715 43.713H240.428c-22.95 0-43.714-21.441-43.714-43.713V87.429c0-22.272 20.764-43.714 43.714-43.714H459c-.351 50.337 0 87.975 0 87.975 0 45.419 40.872 86.882 87.428 86.882H612zm-65.572-349.715c-23.277 0-43.714-42.293-43.714-64.981V44.348L612 174.857zm-43.714 131.537H306c-12.065 0-21.857 9.77-21.857 21.835s9.792 21.835 21.857 21.835h196.714c12.065 0 21.857-9.771 21.857-21.835 0-12.065-9.792-21.835-21.857-21.835zm0 109.176H306c-12.065 0-21.857 9.77-21.857 21.834 0 12.066 9.792 21.836 21.857 21.836h196.714c12.065 0 21.857-9.77 21.857-21.836 0-12.064-9.792-21.834-21.857-21.834z"

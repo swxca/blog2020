@@ -9,23 +9,23 @@
 <meta property = 'og:locale' content = 'en_US' />
 <meta property="og:type" content="article">
 <meta property = 'og:title' content = 'hugo搭建及自动部署（一）' />
-<meta name="description" content="hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的html，css，js文件。
-关键词：小程序；指定的目录结构；html、css、js文件
+<meta name="description" content="hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的静态资源文件（包括html，css，js）。
+关键词：小程序；指定的目录结构；静态资源文件
 以下所有步骤都围绕这是三个关键词进行，以下操作可能会遇到git的push不了，hugo因为环境变量不能运行等问题，请自行google
-实现 …">
-<meta property = 'og:description' content = 'hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的html，css，js文件。
-关键词：小程序；指定的目录结构；html、css、js文件
+实 …">
+<meta property = 'og:description' content = 'hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的静态资源文件（包括html，css，js）。
+关键词：小程序；指定的目录结构；静态资源文件
 以下所有步骤都围绕这是三个关键词进行，以下操作可能会遇到git的push不了，hugo因为环境变量不能运行等问题，请自行google
-实现 …'>
+实 …'>
 <meta property = 'og:url' content = 'http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/' />
 <meta property = 'og:image' content = 'http://blog.zhang.today/images/artist.jpg'/>
 <meta name = 'twitter:card' content = 'summary_large_image' />
 <meta name = 'twitter:creator' content = ''>
 <meta name = 'twitter:title' content = 'hugo搭建及自动部署（一）' />
-<meta property = 'twitter:description'  content = 'hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的html，css，js文件。
-关键词：小程序；指定的目录结构；html、css、js文件
+<meta property = 'twitter:description'  content = 'hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的静态资源文件（包括html，css，js）。
+关键词：小程序；指定的目录结构；静态资源文件
 以下所有步骤都围绕这是三个关键词进行，以下操作可能会遇到git的push不了，hugo因为环境变量不能运行等问题，请自行google
-实现 …'/>
+实 …'/>
 <meta name = 'twitter:image' content = 'http://blog.zhang.today/images/artist.jpg' />
 <link rel='apple-touch-icon' sizes='180x180' href='http://blog.zhang.today/images/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='http://blog.zhang.today/images/icons/favicon-32x32.png'>
@@ -62,8 +62,8 @@
 </section>
 <div class = 'post'>
   <article class='post_content'><h2 id="hugo搭建">hugo搭建</h2>
-<p>hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的html，css，js文件。</p>
-<p><strong>关键词：小程序；指定的目录结构；html、css、js文件</strong></p>
+<p>hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的静态资源文件（包括html，css，js）。</p>
+<p><strong>关键词：小程序；指定的目录结构；静态资源文件</strong></p>
 <p><strong>以下所有步骤都围绕这是三个关键词进行，以下操作可能会遇到git的push不了，hugo因为环境变量不能运行等问题，请自行google</strong></p>
 <h2 id="实现关键词一小程序">实现关键词一：小程序</h2>
 <ol>
@@ -79,7 +79,7 @@ $ hugo version
 </ol>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># 创建一个给hugo读取文件夹
 $ hugo new site yourSiteName
-</code></pre></div><p>这个yourSiteName就是你网站的名字，文件夹里的内容就是hugo读取用来生成html静态文件（啰嗦一句给小白，html文件就是一个个网页）的配置。</p>
+</code></pre></div><p>这个yourSiteName就是你网站的名字，文件夹里的内容就是hugo读取用来生成静态资源文件（啰嗦一句给小白，静态资源文件就是一个个网页）的配置。</p>
 <p>这时候yourSiteName的文件夹结构，应该如下所示</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># yourSiteName的文件夹结构
 .
@@ -105,8 +105,8 @@ $ echo &#39;theme = &#34;hugo-swift-theme&#34;&#39; &gt;&gt; config.toml
 </ol>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ hugo server D
 </code></pre></div><p>在浏览器中，http://localhost:1313，你就能看到页面了。</p>
-<h2 id="实现关键词三生成静态htmlcssjs文件">实现关键词三：生成静态html、css、js文件</h2>
-<p>至此，指定的目录结构和所有文件准备齐全，但是还没有生成网页的静态文件（html，css，js）</p>
+<h2 id="实现关键词三生成静态资源文件">实现关键词三：生成静态资源文件</h2>
+<p>至此，指定的目录结构和所有文件准备齐全，但是还没有生成网页的静态资源文件</p>
 <ol start="6">
 <li>生成静态文件。在yourSiteName下执行hugo</li>
 </ol>
@@ -188,6 +188,27 @@ Total in 53 ms
   <aside><h3>More from 张时中</h3>
 <ul class='posts aside'>
 <li class = 'post_item'>
+  <a class = 'post_card' href='http://blog.zhang.today/post/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/' title = '消息队列nsq工作流程解析（一）---nsqd组件.md' style = 'background-image: url(http://blog.zhang.today/images/artist.jpg);'>
+  </a>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_meta'>
+      <a href = 'http://blog.zhang.today/tags/%E5%B7%A5%E5%85%B7%E6%A1%86%E6%9E%B6' class = 'post_tag'>工具框架
+      </a><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
+  <svg>
+    <use xlink:href="#copy"></use>
+  </svg>  
+</div>
+
+    </div>
+    <h3 class = 'post_link'>
+      <a href='http://blog.zhang.today/post/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/'>消息队列nsq工作流程解析（一）---nsqd组件.md</a>
+    </h3>
+    <p class = 'pale'> 这系列文章我想从0开始，在读者的心中构建一个完整的nsq消息队列模型 包括但不限于以下知识点
+ nsq整体工作流程 nsq各组件工作细节 nsq代码实战 nsq源码解析   那么 …</p>
+  </div>
+</li>
+
+<li class = 'post_item'>
   <a class = 'post_card' href='http://blog.zhang.today/post/creating-a-new-theme/' title = 'Creating a New Theme' style = 'background-image: url(http://blog.zhang.today/images/artist.jpg);'>
   </a>
   <div class = 'excerpt'>
@@ -204,26 +225,6 @@ Total in 53 ms
       <a href='http://blog.zhang.today/post/creating-a-new-theme/'>Creating a New Theme</a>
     </h3>
     <p class = 'pale'>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume …</p>
-  </div>
-</li>
-
-<li class = 'post_item'>
-  <a class = 'post_card' href='http://blog.zhang.today/post/goisforlovers/' title = '(Hu)go Template Primer' style = 'background-image: url(http://blog.zhang.today/images/fast-lane.jpg);'>
-  </a>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_meta'>
-      <a href = 'http://blog.zhang.today/tags/hugo' class = 'post_tag'>hugo
-      </a><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
-  <svg>
-    <use xlink:href="#copy"></use>
-  </svg>  
-</div>
-
-    </div>
-    <h3 class = 'post_link'>
-      <a href='http://blog.zhang.today/post/goisforlovers/'>(Hu)go Template Primer</a>
-    </h3>
-    <p class = 'pale'>Hugo uses the excellent Go html/template library for its template engine. It is an …</p>
   </div>
 </li>
 
