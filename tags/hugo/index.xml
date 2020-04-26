@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hugo on 张时中</title>
+    <title>hugo on LongAgo</title>
     <link>http://blog.zhang.today/tags/hugo/</link>
-    <description>Recent content in hugo on 张时中</description>
+    <description>Recent content in hugo on LongAgo</description>
     <generator>Hugo -- gohugo.io</generator>
-    <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
+    <copyright>Copyright © 2020,all rights reserved.</copyright>
     <lastBuildDate>Fri, 24 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://blog.zhang.today/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
