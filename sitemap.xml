@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</loc>
+    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhang.today/about/</loc>
     <lastmod>2020-04-24T00:00:00+00:00</lastmod>
   </url>
@@ -34,11 +39,6 @@
   
   <url>
     <loc>http://blog.zhang.today/tags/hugo/</loc>
-    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</loc>
     <lastmod>2020-04-24T00:00:00+00:00</lastmod>
   </url>
   
