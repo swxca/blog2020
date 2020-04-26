@@ -77,7 +77,7 @@
 <li>nsqlookupd</li>
 <li>nsqadmin</li>
 </ol>
-<p><strong>网上看了很多文档性质的文章，阅读起来给我的感觉是，就好像组装一个机器人，写清楚了所有的零件用途，但哪个零件是心脏，哪个零件是指甲和头发，我在看的过程中又很多疑惑。所以想要理解nsq，还需要庖丁解牛，有主次，分块理解</strong></p>
+<p><strong>网上看了很多文档性质的文章，阅读起来给我的感觉是，就好像组装一个机器人，一股脑写清楚了所有的零件用途。但哪个零件是心脏，哪个零件是指甲和头发，并没有特别提到，因此我在看的过程中有很多疑惑。所以想要理解nsq，还需要庖丁解牛，有主次，分块理解</strong></p>
 <h2 id="nsq的主体nsqd组件">nsq的主体：nsqd组件</h2>
 <p>现在让我们忘记其他两个组件，一步步分析</p>
 <p>其实nsqd组件本身就是一个消息队列，他可以脱离其他组件工作，因此：</p>
@@ -93,14 +93,14 @@
 <blockquote>
 <p>预告：nsqd与订单系统如何通信？是tcp还是http？或是其他通信协议</p>
 </blockquote>
-<p><img src="images/nsq01.jpg" alt="nsqd流程图" title="流程图"></p>
+<p><img src="http://blog.zhang.today/images/nsq01.jpg" alt="nsqd流程图" title="流程图"></p>
 <blockquote>
 <p>一个topic就是程序发布消息的一个逻辑键，当程序第一次发布消息时就会创建topic</p>
 </blockquote>
 <p>这时候我们发现客户越来越多，积分系统需要排队比较久了，我们要做的就是给积分系统分流，也就是扩展积分系统。积分系统可以是一个容器，也可以是一台机器，我们可以加入一个负载均衡的工具，把流量平均的转发到两套积分系统上，给积分系统分流。像这样，</p>
-<p><img src="images/nsq02.jpg" alt="nsqd流程图" title="流程图"></p>
+<p><img src="http://blog.zhang.today/images/nsq02.jpg" alt="nsqd流程图" title="流程图"></p>
 <p>如果其他系统也出校效率问题，也可以效仿积分系统，加一层负责均衡。负载均衡的分流工作都是一套代码，这样做，我们就已经repeat myself了。因此，nsqd中，已经封装了这个负载均衡工具，名字叫做channel。</p>
-<p><img src="images/nsq03.jpg" alt="nsqd流程图" title="流程图"></p>
+<p><img src="http://blog.zhang.today/images/nsq03.jpg" alt="nsqd流程图" title="流程图"></p>
 <blockquote>
 <p>channel与消费者相关，是消费者之间的负载均衡，channel在某种意义上来说是一个“队列”。每当一个发布者发送一条消息到一个topic，消息会被复制到所有消费者连接的channel上，消费者通过这个特殊的channel读取消息，实际上，在消费者第一次订阅时就会创建channel。Channel会将消息进行排列，如果没有消费者读取消息，消息首先会在内存中排队，当量太大时就会被保存到磁盘中。</p>
 </blockquote>
@@ -110,9 +110,11 @@
 <ol>
 <li>因为是本系列的第一篇，所以开头讲明了本系列文章的主要框架和之后会涉及到的内容</li>
 <li>简单复习重点，nsq的三个组件</li>
-<li>重点介绍了nsqd这个组件的相关概念和工作流程，topic，channel</li>
-<li>消息队列如果是单实例的，那简直太危险了，这个实例一挂，我们的所有系统都将瘫痪，因此，下一节将重点介绍如何用另一个nsq的组件nsqlookupd部署一个分布式的消息队列。</li>
+<li>重点介绍了nsqd这个组件的相关概念和工作流程，topic，channel这两个重要概念</li>
 </ol>
+<blockquote>
+<p>预告：消息队列如果是单实例的，那简直太危险了，这个实例一挂，我们的所有系统都将瘫痪，因此，下一节将重点介绍如何用另一个nsq的组件nsqlookupd部署一个分布式的消息队列。</p>
+</blockquote>
 
     <div class = 'post_extra'><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
   <svg>
