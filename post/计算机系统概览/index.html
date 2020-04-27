@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <title>计算机系统概览 | LongAgo</title>
+  <meta charset='utf-8'>
+  <meta name="generator" content="Hugo 0.69.1" />
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  
+<meta property = 'og:locale' content = 'en_US' />
+<meta property="og:type" content="article">
+<meta property = 'og:title' content = '计算机系统概览' />
+<meta name="description" content=" 这篇文章是为了解释计算机中什么是进程而写的，同时也为了复习计算机操作系统的相关知识。
+ 我们在谈什么？ 当我们在谈计算机系统的时候，我们究竟在谈什么？个人认为，当我们在谈计算机系统的时候，就已经在很大程度上抛开了程序员的某些特性，我们不仅仅是一个写代码的人，同时也是一个设计师，就像我们中国美丽的传说，女娲造人，盘古开 …">
+<meta property = 'og:description' content = ' 这篇文章是为了解释计算机中什么是进程而写的，同时也为了复习计算机操作系统的相关知识。
+ 我们在谈什么？ 当我们在谈计算机系统的时候，我们究竟在谈什么？个人认为，当我们在谈计算机系统的时候，就已经在很大程度上抛开了程序员的某些特性，我们不仅仅是一个写代码的人，同时也是一个设计师，就像我们中国美丽的传说，女娲造人，盘古开 …'>
+<meta property = 'og:url' content = 'http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A7%88/' />
+<meta property = 'og:image' content = 'http://blog.zhang.today/images/stuck.jpg'/>
+<meta name = 'twitter:card' content = 'summary_large_image' />
+<meta name = 'twitter:creator' content = ''>
+<meta name = 'twitter:title' content = '计算机系统概览' />
+<meta property = 'twitter:description'  content = ' 这篇文章是为了解释计算机中什么是进程而写的，同时也为了复习计算机操作系统的相关知识。
+ 我们在谈什么？ 当我们在谈计算机系统的时候，我们究竟在谈什么？个人认为，当我们在谈计算机系统的时候，就已经在很大程度上抛开了程序员的某些特性，我们不仅仅是一个写代码的人，同时也是一个设计师，就像我们中国美丽的传说，女娲造人，盘古开 …'/>
+<meta name = 'twitter:image' content = 'http://blog.zhang.today/images/stuck.jpg' />
+<link rel='apple-touch-icon' sizes='180x180' href='http://blog.zhang.today/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='http://blog.zhang.today/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='http://blog.zhang.today/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='http://blog.zhang.today/images/icons/site.webmanifest'>
+
+  <link rel='canonical' href='http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A7%88/'>
+  <link rel = 'stylesheet' href = 'http://blog.zhang.today/css/styles.bf17aa32e654a5aa2f07d98bd607a95ff5e36b1f2ea241df0e352fa1cf427067f76b5d01fceacecc8e434805edeedc29099c0132e224fd6ba8148b7f0cbde26f.css' integrity = 'sha512-vxeqMuZUpaovB9mL1gepX/Xjax8uokHfDjUvoc9CcGf3a10B/OrOzI5DSAXt7twpCZwBMuIk/WuoFIt/DL3ibw=='>
+</head>
+
+  <body><div class = 'nav-drop'>
+  <div class = 'nav-body'>
+      <a href = 'http://blog.zhang.today/about/' class = 'nav_item'>关于我</a>
+      <a href = 'http://blog.zhang.today/' class = 'nav_item'>博客</a>
+      <a href = 'http://blog.zhang.today/categories/heart/' class = 'nav_item'>阳明心学</a>
+      <a href = 'http://blog.zhang.today/categories/computer/' class = 'nav_item'>计算机技术</a>
+      <a href = 'http://blog.zhang.today/tags/go/' class = 'nav_item'>go</a>
+      <a href = 'http://blog.zhang.today/tags/hugo' class = 'nav_item'>hugo-theme-learning</a>
+    <div class = 'nav-close'></div>
+  </div>
+</div><header class = 'nav' >
+  <nav class = 'nav-menu'>
+    <a href='http://blog.zhang.today/' class = 'nav-brand nav_item'>LongAgo</a>
+    <div class = 'nav_bar-wrap'>
+      <div class = 'nav_bar'></div>
+    </div>
+  </nav>
+</header>
+
+
+    <main>
+<section class = 'post_header' style = 'background-image:url(http://blog.zhang.today/images/stuck.jpg);'>
+  <h1 class='post_title'>计算机系统概览</h1>
+</section>
+<div class = 'post'>
+  <article class='post_content'><blockquote>
+<p>这篇文章是为了解释计算机中什么是进程而写的，同时也为了复习计算机操作系统的相关知识。</p>
+</blockquote>
+<h2 id="我们在谈什么">我们在谈什么？</h2>
+<p><strong>当我们在谈计算机系统的时候，我们究竟在谈什么</strong>？个人认为，当我们在谈计算机系统的时候，就已经在很大程度上抛开了程序员的某些特性，我们不仅仅是一个写代码的人，同时也是一个设计师，就像我们中国美丽的传说，女娲造人，盘古开天地一样，我们是在设计一整套规则,在这套规则下，一生二二生三三生万物，必须能够自然运转。所以，我们要转变思路，抛开代码里的，01010101011100，设计不是非此即彼，很难做到具象的理解，就像很多漫画科普计算机的文，我觉得其实误区不可谓不大，太难用具体的东西来描述，这时候语言的局限性就来了。如果开发系统，那就去读《unix内核编程》，《计算机操作系统》之类的书，如果想做到整体明白，不妨看看此文。代表个人理解，仅做参考。</p>
+<p><strong>在研究计算机系统的过程中，我们常从两个角度分析问题，即</strong>：</p>
+<ol>
+<li>从逻辑上讲</li>
+<li>从物理上讲</li>
+</ol>
+<h2 id="计算机系统概览">计算机系统概览</h2>
+<p><strong>以下概念解释非常枯燥，可以先看下一小节hello world，有疑问再回这节找概念</strong>
+<img src="http://blog.zhang.today/images/cs01.jpg" alt="计算机系统" title="cs"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;hello world&#34;</span>)
+}
+</code></pre></div><h3 id="io设备">I/O设备</h3>
+<p>以I/O总线为分界线，下面部分是我们常见的一些鼠标，键盘一些控制器设备或者是适配器。还有储存文件的磁盘，比如这段代码，开始就存在下面的磁盘上。</p>
+<h3 id="总线">总线</h3>
+<p>往上走就是总线，总线负责携带和在各个部件间传递信息。<strong>从这句话就能看出总线的意义非常重要，因为计算机执行一段程序的本质就是各个部件间的信息复制和传递</strong>。总线每次只能传送一个字到其他部件，这个字就是word，字长。现在一般是64bit。</p>
+<h3 id="主存和cpu">主存和cpu</h3>
+<p>主存也就是平常所说的内存，如果电脑突然断电或者重启，那主存的内容也会消失，所以主存是一个临时的存储设备。主存从逻辑上讲，是一个线性的字节数组，每个字节都有其唯一的地址（数组索引），从物理上讲，是一组动态的随机存取储存器芯片组成。这里存放着不同的机器指令</p>
+<p>CPU又叫处理器，处理器的核心是一个word的存储设备，称为程序计数器(PC),在任何时候，PC都指向主存中的某条机器语言指令。处理器从PC指向的主存处，读取指令，解释指令中的位，执行该指令A。</p>
+<p>寄存器文件是由一些1字长的寄存器组成。</p>
+<p>A指令包括但不限于:</p>
+<ol>
+<li>加载,把一个字从主存复制到寄存器，以覆盖寄存器文件原来的内容。</li>
+<li>存储，把一个字从寄存器复制到主存的某个位置，以覆盖这个位置上原来的内容。</li>
+<li>操作，把两个寄存器复制到ALU，ALU对这两个字做算术操作，并将结果放到一个寄存器中，以覆盖该寄存器中原来的内容。</li>
+</ol>
+<h2 id="hello-world">hello world</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">hello</span>.<span style="color:#66d9ef">go</span>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;hello world&#34;</span>)
+}
+</code></pre></div><p>终于，概念解释完了。我们具体捕捉一下一段程序在这个系统中的踪迹。</p>
+<p>这段代码开始是在磁盘里，我们将这段代码经过了编译，链接等各种阶段，把它变成了一个可执行文件，只有变成这种格式的文件，才可以被加载到内存中。当我们在键盘上./hello的时候，计算机将磁盘中的文件内容，copy到了主存。然后等PC指到了这段代码的指令，cpu将对代码进行解释和执行，指令本身是print，那么就是将hello world 复制到寄存器文件，再从寄存器文件中复制到显示器。</p>
+<p>注意，以上任何操作都离不开总线，比如最后一步，从寄存器文件到显示器。</p>
+<p>这也就是为什么时候说，计算机中执行一段程序，要经过很多次在磁盘等IO设备， 主存，cpu等设备之间的复制。这些设备的复制传递速度不一（根据机械原理，较大的存储设备要比较小的存储设备运行的慢），是导致计算机性能出现瓶颈的原因之一。</p>
+<h2 id="总结">总结</h2>
+<p>理解了以上内容，才能更好的理解进程，线程等概念，才能更好的回答比如，进程和线程之间的关系到底是什么？进程退出了，线程还能运行吗？主线程退出了，其他线程还在吗？下一节将是一些更感性的概念：</p>
+<ol>
+<li>上下文context是什么</li>
+<li>进程是一种抽象，是计算机科学中，最成功的最深刻的 <em><strong>概念</strong></em> 之一</li>
+</ol>
+
+    <div class = 'post_extra'><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
+  <svg>
+    <use xlink:href="#copy"></use>
+  </svg>  
+</div>
+
+    </div>
+  <div class = 'author'>
+    <a href = '' target = "张时中's profile" class = 'author_pic'>
+      <img src = 'http://blog.zhang.today/images/%E5%BC%A0%E6%97%B6%E4%B8%AD.jpg' alt = ''>
+    </a>
+    <div class = 'author_meta'>
+      <a class = 'author_name' href = '' title = "map[Count:张时中]&#39;s profile">张时中</a>
+      <p class = 'pale author_bio solo'>力求用最朴素的思维和语言，解释清楚每一个知识点</p>
+    </div>
+  </div>
+
+  </article>
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'kil9nDon6gQoCfT1ipG1WVkD-gzGzoHsz',
+        appKey: '5G9LaVE9valii0rVlefUHQO0',
+        notify: 'false', 
+        verify: 'false', 
+        avatar:'gg', 
+        placeholder: '说点什么吧...',
+        visitor: 'true'
+    });
+  </script>
+
+  <aside><h3>More from LongAgo</h3>
+<ul class='posts aside'>
+<li class = 'post_item'>
+  <a class = 'post_card' href='http://blog.zhang.today/post/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/' title = '消息队列nsq工作流程解析（一）---nsqd组件.md' style = 'background-image: url(http://blog.zhang.today/images/fast-lane.jpg);'>
+  </a>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_meta'>
+      <a href = 'http://blog.zhang.today/tags/%E5%B7%A5%E5%85%B7%E6%A1%86%E6%9E%B6' class = 'post_tag'>工具框架
+      </a><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
+  <svg>
+    <use xlink:href="#copy"></use>
+  </svg>  
+</div>
+
+    </div>
+    <h3 class = 'post_link'>
+      <a href='http://blog.zhang.today/post/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/'>消息队列nsq工作流程解析（一）---nsqd组件.md</a>
+    </h3>
+    <p class = 'pale'> 这系列文章我想从0开始，在读者的心中构建一个完整的nsq消息队列模型 包括但不限于以下知识点
+ nsq整体工作流程 nsq各组件工作细节 nsq代码实战 nsq源码解析   那么 …</p>
+  </div>
+</li>
+
+<li class = 'post_item'>
+  <a class = 'post_card' href='http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/' title = 'hugo搭建及自动部署（二）' style = 'background-image: url(http://blog.zhang.today/images/artist.jpg);'>
+  </a>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_meta'>
+      <a href = 'http://blog.zhang.today/tags/hugo' class = 'post_tag'>hugo
+      </a><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
+  <svg>
+    <use xlink:href="#copy"></use>
+  </svg>  
+</div>
+
+    </div>
+    <h3 class = 'post_link'>
+      <a href='http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/'>hugo搭建及自动部署（二）</a>
+    </h3>
+    <p class = 'pale'>自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就可以访问了，那这里为什么叫自动部署呢？自动一词体现在哪儿呢？
+ …</p>
+  </div>
+</li>
+
+</ul>
+
+  </aside>
+</div>
+<script src = 'http://blog.zhang.today/js/autosize.min.js'></script>
+<script src = 'http://blog.zhang.today/js/timeago.js'></script>
+    </main><svg width="0" height="0" class="hidden">
+  <symbol viewBox="0 0 699.428 699.428" xmlns="http://www.w3.org/2000/svg" id="copy">
+    <path d="M502.714 0H240.428C194.178 0 153 42.425 153 87.429l-25.267.59c-46.228 0-84.019 41.834-84.019 86.838V612c0 45.004 41.179 87.428 87.429 87.428H459c46.249 0 87.428-42.424 87.428-87.428h21.857c46.25 0 87.429-42.424 87.429-87.428v-349.19zM459 655.715H131.143c-22.95 0-43.714-21.441-43.714-43.715V174.857c0-22.272 18.688-42.993 41.638-42.993l23.933-.721v393.429C153 569.576 194.178 612 240.428 612h262.286c0 22.273-20.765 43.715-43.714 43.715zm153-131.143c0 22.271-20.765 43.713-43.715 43.713H240.428c-22.95 0-43.714-21.441-43.714-43.713V87.429c0-22.272 20.764-43.714 43.714-43.714H459c-.351 50.337 0 87.975 0 87.975 0 45.419 40.872 86.882 87.428 86.882H612zm-65.572-349.715c-23.277 0-43.714-42.293-43.714-64.981V44.348L612 174.857zm-43.714 131.537H306c-12.065 0-21.857 9.77-21.857 21.835s9.792 21.835 21.857 21.835h196.714c12.065 0 21.857-9.771 21.857-21.835 0-12.065-9.792-21.835-21.857-21.835zm0 109.176H306c-12.065 0-21.857 9.77-21.857 21.834 0 12.066 9.792 21.836 21.857 21.836h196.714c12.065 0 21.857-9.77 21.857-21.836 0-12.064-9.792-21.834-21.857-21.834z"
+    ></path>
+  </symbol>
+  <symbol viewBox="0 0 60.015 60.015" xmlns="http://www.w3.org/2000/svg" id="reply">
+    <path d="M42.007 0h-24c-9.925 0-18 8.075-18 18v14c0 9.59 7.538 17.452 17 17.973v8.344a1.694 1.694 0 0 0 1.699 1.698c.44 0 .873-.173 1.198-.498l1.876-1.876C26.708 52.713 33.259 50 40.227 50h1.78c9.925 0 18-8.075 18-18V18c0-9.925-8.075-18-18-18zm16 32c0 8.822-7.178 16-16 16h-1.78c-7.502 0-14.556 2.921-19.86 8.226l-1.359 1.359V44a1 1 0 1 0-2 0v3.949c-8.356-.52-15-7.465-15-15.949V18c0-8.822 7.178-16 16-16h24c8.822 0 16 7.178 16 16v14z"></path>
+  </symbol>
+</svg>
+<footer class = 'footer'>
+  <div class = 'footer_inner wrap pale'>
+    <p>&copy;&nbsp;<span class = 'year'></span>&nbsp;LongAgo.
+    Designed by  <a href = '<no value>' title = 'Linkedin Profile'>张时中</a></p>
+  </div>
+</footer>
+<script src = 'http://blog.zhang.today/js/index.min.56014eb00b47a2f69cfeb38ce036f1b5129cac91d08e354a6ff26872e77fce3571caff31f49435056a7fa0cc950b179d8e38c4042989ad67743976ea5b6e9a71.js'></script>
+
+  </body>
+</html>
