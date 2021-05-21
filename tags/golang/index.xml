@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>golang on 张时中</title>
-    <link>http://blog.zhang.today/tags/golang/</link>
+    <link>http://47.98.216.98:8003/tags/golang/</link>
     <description>Recent content in golang on 张时中</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
     <lastBuildDate>Fri, 24 Apr 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://blog.zhang.today/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://47.98.216.98:8003/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>hugo搭建及自动部署（一）</title>
-      <link>http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</link>
+      <link>http://47.98.216.98:8003/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</link>
       <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</guid>
+      <guid>http://47.98.216.98:8003/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</guid>
       <description>hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的html，css，js文件。
 关键词：小程序；指定的目录结构；html、css、js文件
 以下所有步骤都围绕这是三个关键词进行，以下操作可能会遇到git的push不了，hugo因为环境变量不能运行等问题，请自行google
@@ -30,10 +30,10 @@ $ git submodule add https://github.com/onweru/hugo-swift-theme themes/hugo-swift
     
     <item>
       <title>hugo搭建及自动部署（一）</title>
-      <link>http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/</link>
+      <link>http://47.98.216.98:8003/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/</link>
       <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/</guid>
+      <guid>http://47.98.216.98:8003/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/</guid>
       <description>自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就可以访问了，那这里为什么叫自动部署呢？自动一词体现在哪儿呢？
 按照之前的思路：
 首先配置基于nginx的静态网站，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。

@@ -13,37 +13,37 @@
 slice是一个轻量级的数据结构，翻译过来就是slice就像type xxx struct一样，是一种数据结构，主要构成 …">
 <meta property = 'og:description' content = 'slice与数组的关系 slice单词的翻译的名词有薄片，片的意思，动词是切片。所以slice就像数组的一片，他不是一个数组，只有依赖底层数组，slice才有意义，这从slice的定义就可以看出。
 slice是一个轻量级的数据结构，翻译过来就是slice就像type xxx struct一样，是一种数据结构，主要构成 …'>
-<meta property = 'og:url' content = 'http://blog.zhang.today/post/go%E5%9F%BA%E7%A1%80%E4%B9%8Bslice/' />
-<meta property = 'og:image' content = 'http://blog.zhang.today/images/stuck.jpg'/>
+<meta property = 'og:url' content = 'http://47.98.216.98:8003/post/go%E5%9F%BA%E7%A1%80%E4%B9%8Bslice/' />
+<meta property = 'og:image' content = 'http://47.98.216.98:8003/images/stuck.jpg'/>
 <meta name = 'twitter:card' content = 'summary_large_image' />
 <meta name = 'twitter:creator' content = ''>
 <meta name = 'twitter:title' content = 'go基础之slice' />
 <meta property = 'twitter:description'  content = 'slice与数组的关系 slice单词的翻译的名词有薄片，片的意思，动词是切片。所以slice就像数组的一片，他不是一个数组，只有依赖底层数组，slice才有意义，这从slice的定义就可以看出。
 slice是一个轻量级的数据结构，翻译过来就是slice就像type xxx struct一样，是一种数据结构，主要构成 …'/>
-<meta name = 'twitter:image' content = 'http://blog.zhang.today/images/stuck.jpg' />
-<link rel='apple-touch-icon' sizes='180x180' href='http://blog.zhang.today/images/icons/apple-touch-icon.png'>
-<link rel='icon' type='image/png' sizes='32x32' href='http://blog.zhang.today/images/icons/favicon-32x32.png'>
-<link rel='icon' type='image/png' sizes='16x16' href='http://blog.zhang.today/images/icons/favicon-16x16.png'>
-<link rel='manifest' href='http://blog.zhang.today/images/icons/site.webmanifest'>
+<meta name = 'twitter:image' content = 'http://47.98.216.98:8003/images/stuck.jpg' />
+<link rel='apple-touch-icon' sizes='180x180' href='http://47.98.216.98:8003/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='http://47.98.216.98:8003/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='http://47.98.216.98:8003/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='http://47.98.216.98:8003/images/icons/site.webmanifest'>
 
-  <link rel='canonical' href='http://blog.zhang.today/post/go%E5%9F%BA%E7%A1%80%E4%B9%8Bslice/'>
-  <link rel = 'stylesheet' href = 'http://blog.zhang.today/css/styles.bf17aa32e654a5aa2f07d98bd607a95ff5e36b1f2ea241df0e352fa1cf427067f76b5d01fceacecc8e434805edeedc29099c0132e224fd6ba8148b7f0cbde26f.css' integrity = 'sha512-vxeqMuZUpaovB9mL1gepX/Xjax8uokHfDjUvoc9CcGf3a10B/OrOzI5DSAXt7twpCZwBMuIk/WuoFIt/DL3ibw=='>
+  <link rel='canonical' href='http://47.98.216.98:8003/post/go%E5%9F%BA%E7%A1%80%E4%B9%8Bslice/'>
+  <link rel = 'stylesheet' href = 'http://47.98.216.98:8003/css/styles.bf17aa32e654a5aa2f07d98bd607a95ff5e36b1f2ea241df0e352fa1cf427067f76b5d01fceacecc8e434805edeedc29099c0132e224fd6ba8148b7f0cbde26f.css' integrity = 'sha512-vxeqMuZUpaovB9mL1gepX/Xjax8uokHfDjUvoc9CcGf3a10B/OrOzI5DSAXt7twpCZwBMuIk/WuoFIt/DL3ibw=='>
 </head>
 
   <body><div class = 'nav-drop'>
   <div class = 'nav-body'>
-      <a href = 'http://blog.zhang.today/about/' class = 'nav_item'>关于我</a>
-      <a href = 'http://blog.zhang.today/' class = 'nav_item'>博客</a>
-      <a href = 'http://blog.zhang.today/categories/heart/' class = 'nav_item'>阳明心学</a>
-      <a href = 'http://blog.zhang.today/categories/computer/' class = 'nav_item'>计算机技术</a>
-      <a href = 'http://blog.zhang.today/tags/go/' class = 'nav_item'>go</a>
-      <a href = 'http://blog.zhang.today/tags/%E6%9D%82%E8%B0%88' class = 'nav_item'>杂谈</a>
-      <a href = 'http://blog.zhang.today/tags/hugo' class = 'nav_item'>hugo-theme-learning</a>
+      <a href = 'http://47.98.216.98:8003/about/' class = 'nav_item'>关于我</a>
+      <a href = 'http://47.98.216.98:8003/' class = 'nav_item'>博客</a>
+      <a href = 'http://47.98.216.98:8003/categories/heart/' class = 'nav_item'>阳明心学</a>
+      <a href = 'http://47.98.216.98:8003/categories/computer/' class = 'nav_item'>计算机技术</a>
+      <a href = 'http://47.98.216.98:8003/tags/go/' class = 'nav_item'>go</a>
+      <a href = 'http://47.98.216.98:8003/tags/%E6%9D%82%E8%B0%88' class = 'nav_item'>杂谈</a>
+      <a href = 'http://47.98.216.98:8003/tags/hugo' class = 'nav_item'>hugo-theme-learning</a>
     <div class = 'nav-close'></div>
   </div>
 </div><header class = 'nav' >
   <nav class = 'nav-menu'>
-    <a href='http://blog.zhang.today/' class = 'nav-brand nav_item'>LongAgo</a>
+    <a href='http://47.98.216.98:8003/' class = 'nav-brand nav_item'>LongAgo</a>
     <div class = 'nav_bar-wrap'>
       <div class = 'nav_bar'></div>
     </div>
@@ -52,7 +52,7 @@ slice是一个轻量级的数据结构，翻译过来就是slice就像type xxx s
 
 
     <main>
-<section class = 'post_header' style = 'background-image:url(http://blog.zhang.today/images/stuck.jpg);'>
+<section class = 'post_header' style = 'background-image:url(http://47.98.216.98:8003/images/stuck.jpg);'>
   <h1 class='post_title'>go基础之slice</h1>
 </section>
 <div class = 'post'>
@@ -92,7 +92,7 @@ s[:],s[:2],s[4:],这种不填索引的情况，代表着直到结尾或者开始
     </div>
   <div class = 'author'>
     <a href = '' target = "张时中's profile" class = 'author_pic'>
-      <img src = 'http://blog.zhang.today/images/%E5%BC%A0%E6%97%B6%E4%B8%AD.jpg' alt = ''>
+      <img src = 'http://47.98.216.98:8003/images/%E5%BC%A0%E6%97%B6%E4%B8%AD.jpg' alt = ''>
     </a>
     <div class = 'author_meta'>
       <a class = 'author_name' href = '' title = "map[Count:张时中]&#39;s profile">张时中</a>
@@ -121,7 +121,7 @@ s[:],s[:2],s[4:],这种不填索引的情况，代表着直到结尾或者开始
   <aside><h3>More from LongAgo</h3>
 <ul class='posts aside'>
 <li class = 'post_item'>
-  <a class = 'post_card' href='http://blog.zhang.today/post/go%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E7%BB%84/' title = 'go基础之数组' style = 'background-image: url(http://blog.zhang.today/images/stuck.jpg);'>
+  <a class = 'post_card' href='http://47.98.216.98:8003/post/go%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E7%BB%84/' title = 'go基础之数组' style = 'background-image: url(http://47.98.216.98:8003/images/stuck.jpg);'>
   </a>
   <div class = 'excerpt'>
     <div class = 'excerpt_meta'><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
@@ -132,14 +132,14 @@ s[:],s[:2],s[4:],这种不填索引的情况，代表着直到结尾或者开始
 
     </div>
     <h3 class = 'post_link'>
-      <a href='http://blog.zhang.today/post/go%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E7%BB%84/'>go基础之数组</a>
+      <a href='http://47.98.216.98:8003/post/go%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E7%BB%84/'>go基础之数组</a>
     </h3>
     <p class = 'pale'>我认为学习一门语言重要的不是去记一些，如何定义数组，数组什么形式，&hellip;型定义，这些语法的东西，因为计算机语言跟我们用来沟通的语言有很多相似之处，语言的本质是用来交流，我 …</p>
   </div>
 </li>
 
 <li class = 'post_item'>
-  <a class = 'post_card' href='http://blog.zhang.today/post/%E4%BB%8Egopath%E5%88%B0gomod/' title = '从gopath到gomod' style = 'background-image: url(http://blog.zhang.today/images/stuck.jpg);'>
+  <a class = 'post_card' href='http://47.98.216.98:8003/post/%E4%BB%8Egopath%E5%88%B0gomod/' title = '从gopath到gomod' style = 'background-image: url(http://47.98.216.98:8003/images/stuck.jpg);'>
   </a>
   <div class = 'excerpt'>
     <div class = 'excerpt_meta'><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
@@ -150,7 +150,7 @@ s[:],s[:2],s[4:],这种不填索引的情况，代表着直到结尾或者开始
 
     </div>
     <h3 class = 'post_link'>
-      <a href='http://blog.zhang.today/post/%E4%BB%8Egopath%E5%88%B0gomod/'>从gopath到gomod</a>
+      <a href='http://47.98.216.98:8003/post/%E4%BB%8Egopath%E5%88%B0gomod/'>从gopath到gomod</a>
     </h3>
     <p class = 'pale'>本文不只局限在go语言，想从计算机语言的角度出发，从为什么需要环境变量讲起，一次性讲明白关于go的依赖，环境变量，gomod等一系列概念
  为什么需要环境变量？ 除了html之类的 …</p>
@@ -161,8 +161,8 @@ s[:],s[:2],s[4:],这种不填索引的情况，代表着直到结尾或者开始
 
   </aside>
 </div>
-<script src = 'http://blog.zhang.today/js/autosize.min.js'></script>
-<script src = 'http://blog.zhang.today/js/timeago.js'></script>
+<script src = 'http://47.98.216.98:8003/js/autosize.min.js'></script>
+<script src = 'http://47.98.216.98:8003/js/timeago.js'></script>
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 699.428 699.428" xmlns="http://www.w3.org/2000/svg" id="copy">
     <path d="M502.714 0H240.428C194.178 0 153 42.425 153 87.429l-25.267.59c-46.228 0-84.019 41.834-84.019 86.838V612c0 45.004 41.179 87.428 87.429 87.428H459c46.249 0 87.428-42.424 87.428-87.428h21.857c46.25 0 87.429-42.424 87.429-87.428v-349.19zM459 655.715H131.143c-22.95 0-43.714-21.441-43.714-43.715V174.857c0-22.272 18.688-42.993 41.638-42.993l23.933-.721v393.429C153 569.576 194.178 612 240.428 612h262.286c0 22.273-20.765 43.715-43.714 43.715zm153-131.143c0 22.271-20.765 43.713-43.715 43.713H240.428c-22.95 0-43.714-21.441-43.714-43.713V87.429c0-22.272 20.764-43.714 43.714-43.714H459c-.351 50.337 0 87.975 0 87.975 0 45.419 40.872 86.882 87.428 86.882H612zm-65.572-349.715c-23.277 0-43.714-42.293-43.714-64.981V44.348L612 174.857zm-43.714 131.537H306c-12.065 0-21.857 9.77-21.857 21.835s9.792 21.835 21.857 21.835h196.714c12.065 0 21.857-9.771 21.857-21.835 0-12.065-9.792-21.835-21.857-21.835zm0 109.176H306c-12.065 0-21.857 9.77-21.857 21.834 0 12.066 9.792 21.836 21.857 21.836h196.714c12.065 0 21.857-9.77 21.857-21.836 0-12.064-9.792-21.834-21.857-21.834z"
@@ -178,7 +178,7 @@ s[:],s[:2],s[4:],这种不填索引的情况，代表着直到结尾或者开始
     Designed by  <a href = '<no value>' title = 'Linkedin Profile'>张时中</a></p>
   </div>
 </footer>
-<script src = 'http://blog.zhang.today/js/index.min.56014eb00b47a2f69cfeb38ce036f1b5129cac91d08e354a6ff26872e77fce3571caff31f49435056a7fa0cc950b179d8e38c4042989ad67743976ea5b6e9a71.js'></script>
+<script src = 'http://47.98.216.98:8003/js/index.min.56014eb00b47a2f69cfeb38ce036f1b5129cac91d08e354a6ff26872e77fce3571caff31f49435056a7fa0cc950b179d8e38c4042989ad67743976ea5b6e9a71.js'></script>
 
   </body>
 </html>
