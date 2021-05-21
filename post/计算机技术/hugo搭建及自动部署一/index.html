@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <title>Hugo搭建及自动部署（一） | LongAgo</title>
+  <meta charset='utf-8'>
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  
+<meta property = 'og:locale' content = 'en_US' />
+<meta property="og:type" content="article">
+<meta property = 'og:title' content = 'hugo搭建及自动部署（一）' />
+<meta name="description" content="hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的静态资源文件（包括html，css，js）。
+关键词：小程序；指定的目录结构；静态资源文件
+以下所有步骤都围绕这是三个关键词进行，以下操作可能会遇到git的push不了，hugo因为环境变量不能运行等问题，请自行google
+实 …">
+<meta property = 'og:description' content = 'hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的静态资源文件（包括html，css，js）。
+关键词：小程序；指定的目录结构；静态资源文件
+以下所有步骤都围绕这是三个关键词进行，以下操作可能会遇到git的push不了，hugo因为环境变量不能运行等问题，请自行google
+实 …'>
+<meta property = 'og:url' content = 'http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/' />
+<meta property = 'og:image' content = 'http://blog.zhang.today/images/artist.jpg'/>
+<meta name = 'twitter:card' content = 'summary_large_image' />
+<meta name = 'twitter:creator' content = ''>
+<meta name = 'twitter:title' content = 'hugo搭建及自动部署（一）' />
+<meta property = 'twitter:description'  content = 'hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的静态资源文件（包括html，css，js）。
+关键词：小程序；指定的目录结构；静态资源文件
+以下所有步骤都围绕这是三个关键词进行，以下操作可能会遇到git的push不了，hugo因为环境变量不能运行等问题，请自行google
+实 …'/>
+<meta name = 'twitter:image' content = 'http://blog.zhang.today/images/artist.jpg' />
+<link rel='apple-touch-icon' sizes='180x180' href='http://blog.zhang.today/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='http://blog.zhang.today/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='http://blog.zhang.today/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='http://blog.zhang.today/images/icons/site.webmanifest'>
+
+  <link rel='canonical' href='http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/'>
+  <link rel = 'stylesheet' href = 'http://blog.zhang.today/css/styles.bf17aa32e654a5aa2f07d98bd607a95ff5e36b1f2ea241df0e352fa1cf427067f76b5d01fceacecc8e434805edeedc29099c0132e224fd6ba8148b7f0cbde26f.css' integrity = 'sha512-vxeqMuZUpaovB9mL1gepX/Xjax8uokHfDjUvoc9CcGf3a10B/OrOzI5DSAXt7twpCZwBMuIk/WuoFIt/DL3ibw=='>
+</head>
+
+  <body><div class = 'nav-drop'>
+  <div class = 'nav-body'>
+      <a href = 'http://blog.zhang.today/about/' class = 'nav_item'>关于我</a>
+      <a href = 'http://blog.zhang.today/categories/heart/' class = 'nav_item'>阳明心学</a>
+      <a href = 'http://blog.zhang.today/categories/computer/' class = 'nav_item'>计算机技术</a>
+      <a href = 'http://blog.zhang.today/tags/go/' class = 'nav_item'>go</a>
+      <a href = 'http://blog.zhang.today/categories/%E9%BB%84%E5%B3%A5' class = 'nav_item'>黄峥</a>
+      <a href = 'http://blog.zhang.today/categories/%E4%BB%BB%E6%AD%A3%E9%9D%9E' class = 'nav_item'>任正非</a>
+      <a href = 'http://blog.zhang.today/categories/%E6%AE%B5%E6%B0%B8%E5%B9%B3' class = 'nav_item'>段永平</a>
+      <a href = 'http://blog.zhang.today/categories/stock' class = 'nav_item'>股票</a>
+      <a href = 'http://blog.zhang.today/tags/hugo' class = 'nav_item'>hugo-theme-learning</a>
+    <div class = 'nav-close'></div>
+  </div>
+</div><header class = 'nav' >
+  <nav class = 'nav-menu'>
+    <a href='http://blog.zhang.today/' class = 'nav-brand nav_item'>LongAgo</a>
+    <div class = 'nav_bar-wrap'>
+      <div class = 'nav_bar'></div>
+    </div>
+  </nav>
+</header>
+
+
+    <main>
+<section class = 'post_header' style = 'background-image:url(http://blog.zhang.today/images/artist.jpg);'>
+  <h1 class='post_title'>hugo搭建及自动部署（一）</h1>
+</section>
+<div class = 'post'>
+  <article class='post_content'><h2 id="hugo搭建">hugo搭建</h2>
+<p>hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的静态资源文件（包括html，css，js）。</p>
+<p><strong>关键词：小程序；指定的目录结构；静态资源文件</strong></p>
+<p><strong>以下所有步骤都围绕这是三个关键词进行，以下操作可能会遇到git的push不了，hugo因为环境变量不能运行等问题，请自行google</strong></p>
+<h2 id="实现关键词一小程序">实现关键词一：小程序</h2>
+<ol>
+<li>因此搭建的第一件事儿就是拿到这个小程序，在计算机上小程序的本质基本都是二进制文件，如windows的exe，linux和mac放在/usr/local/bin里的文件。在<a href="https://github.com/gohugoio/hugo/releases">这里</a>下载属于你系统的二进制文件。windows并不是很清楚，mac和linux的话，就跟以往一样，把下载到的压缩包解压，拿到hugo文件，移动到/usr/local/bin或者/usr/bin/里面。</li>
+</ol>
+<p>补充：mac也可以用brew安装下载，brew install hugo ，但个人认为brew太慢了（可能被墙了），linux可以用apt-get和brew安装下载，但有个前提就是你的linux机器上有apt-get或者brew，apt-get下载到的不一定是新的，brew还需要安装，这一系列事情又需要时间，还有一堆错误等着。</p>
+<p>所以，<strong>个人推荐，直接用以上二进制的方法去得到这个小程序，这是我尝试过几种方法后的出来的结论，你可以不用花时间尝试了。</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># 测试你是否安装成功
+$ hugo version
+</code></pre></div><h2 id="实现关键词二固定目录结构和文件">实现关键词二：固定目录结构和文件</h2>
+<ol start="2">
+<li>得到了hugo程序，那么分解开始说的hugo的本质这句话，就是我们还需要一个目录结构给hugo读取。很显然，hugo会为我们考虑到</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># 创建一个给hugo读取文件夹
+$ hugo new site yourSiteName
+</code></pre></div><p>这个yourSiteName就是你网站的名字，文件夹里的内容就是hugo读取用来生成静态资源文件（啰嗦一句给小白，静态资源文件就是一个个网页）的配置。</p>
+<p>这时候yourSiteName的文件夹结构，应该如下所示</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># yourSiteName的文件夹结构
+.
+├── archetypes
+│   └── default.md
+├── config.toml
+├── content
+├── data
+├── layouts
+├── static
+└── themes
+
+6 directories, 2 files
+</code></pre></div><p><strong>到这里先不要急着了解这些文件结构的意义，先跑起来</strong>
+3. 安装主题
+这一步很简单，比如我用的是hugo-swift-theme主题,cd进入到yourSiteName中</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ git submodule add https://github.com/onweru/hugo-swift-theme themes/hugo-swift-theme
+$ echo &#39;theme = &#34;hugo-swift-theme&#34;&#39; &gt;&gt; config.toml
+</code></pre></div><p>这时候主题安装完毕，接下来看看example
+4. 将yourSiteName/themes/hugo-swift-theme/exampleSite里面的所有文件，每个都复制到yourSiteName/路径下，覆盖之前的文件。</p>
+<ol start="5">
+<li>运行hugo</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ hugo server D
+</code></pre></div><p>在浏览器中，http://localhost:1313，你就能看到页面了。</p>
+<h2 id="实现关键词三生成静态资源文件">实现关键词三：生成静态资源文件</h2>
+<p>至此，指定的目录结构和所有文件准备齐全，但是还没有生成网页的静态资源文件</p>
+<ol start="6">
+<li>生成静态文件。在yourSiteName下执行hugo</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ yourSiteName git:(master) ✗ hugo
+                   | EN  
+-------------------+-----
+  Pages            |  3  
+  Paginator pages  |  0  
+  Non-page files   |  0  
+  Static files     |  0  
+  Processed images |  0  
+  Aliases          |  0  
+  Sitemaps         |  1  
+  Cleaned          |  0  
+
+Total in 53 ms
+</code></pre></div><p>看到这个Total in 53 ms，这时候再看文件结构</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">├── archetypes
+│   └── default.md
+├── config.toml
+├── content
+├── data
+├── layouts
+├── public
+│   ├── categories
+│   │   └── index.xml
+│   ├── index.xml
+│   ├── sitemap.xml
+│   └── tags
+│       └── index.xml
+├── resources
+│   └── _gen
+│       ├── assets
+│       └── images
+├── static
+└── themes
+</code></pre></div><p>这个public文件夹，就是你的静态网页文件了。</p>
+<h2 id="总结">总结</h2>
+<p>本文我们围绕三个简单的关键词，本地搭建了hugo博客。
+总结很简单，就是这三个关键词。</p>
+<p>相信可能思考深入的同学，会有一些疑问，比如，如何在服务器部署？如何布局？如何写文章？是否有评论插件？如何编辑，怎么更新？
+至此，单机版hugo运行了起来，你只能在本地欣赏一下，下一篇要做的事，就是把这个静态文件运行到服务器上。</p>
+
+    <div class = 'post_extra'><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
+  <svg>
+    <use xlink:href="#copy"></use>
+  </svg>  
+</div>
+
+    </div>
+  <div class = 'author'>
+    <a href = '' target = "张时中's profile" class = 'author_pic'>
+      <img src = 'http://blog.zhang.today/images/%E5%BC%A0%E6%97%B6%E4%B8%AD.jpg' alt = ''>
+    </a>
+    <div class = 'author_meta'>
+      <a class = 'author_name' href = '' title = "map[Count:张时中]&#39;s profile">张时中</a>
+      <p class = 'pale author_bio solo'>力求用最朴素的思维和语言，解释清楚每一个知识点</p>
+    </div>
+  </div>
+
+  </article>
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'kil9nDon6gQoCfT1ipG1WVkD-gzGzoHsz',
+        appKey: '5G9LaVE9valii0rVlefUHQO0',
+        notify: 'false', 
+        verify: 'false', 
+        avatar:'gg', 
+        placeholder: '说点什么吧...',
+        visitor: 'true'
+    });
+  </script>
+
+  <aside><h3>More from LongAgo</h3>
+<ul class='posts aside'>
+<li class = 'post_item'>
+  <a class = 'post_card' href='http://blog.zhang.today/post/go/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/' title = '消息队列nsq工作流程解析（一）---nsqd组件.md' style = 'background-image: url(http://blog.zhang.today/images/fast-lane.jpg);'>
+  </a>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_meta'>
+      <a href = 'http://blog.zhang.today/tags/%E5%B7%A5%E5%85%B7%E6%A1%86%E6%9E%B6' class = 'post_tag'>工具框架
+      </a><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
+  <svg>
+    <use xlink:href="#copy"></use>
+  </svg>  
+</div>
+
+    </div>
+    <h3 class = 'post_link'>
+      <a href='http://blog.zhang.today/post/go/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/'>消息队列nsq工作流程解析（一）---nsqd组件.md</a>
+    </h3>
+    <p class = 'pale'> 这系列文章我想从0开始，在读者的心中构建一个完整的nsq消息队列模型 包括但不限于以下知识点
+ nsq整体工作流程 nsq各组件工作细节 nsq代码实战 nsq源码解析   那么 …</p>
+  </div>
+</li>
+
+<li class = 'post_item'>
+  <a class = 'post_card' href='http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/' title = 'hugo搭建及自动部署（二）' style = 'background-image: url(http://blog.zhang.today/images/artist.jpg);'>
+  </a>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_meta'>
+      <a href = 'http://blog.zhang.today/tags/hugo' class = 'post_tag'>hugo
+      </a><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
+  <svg>
+    <use xlink:href="#copy"></use>
+  </svg>  
+</div>
+
+    </div>
+    <h3 class = 'post_link'>
+      <a href='http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/'>hugo搭建及自动部署（二）</a>
+    </h3>
+    <p class = 'pale'>自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就可以访问了，那这里为什么叫自动部署呢？自动一词体现在哪儿呢？
+ …</p>
+  </div>
+</li>
+
+</ul>
+
+  </aside>
+</div>
+<script src = 'http://blog.zhang.today/js/autosize.min.js'></script>
+<script src = 'http://blog.zhang.today/js/timeago.js'></script>
+    </main><svg width="0" height="0" class="hidden">
+  <symbol viewBox="0 0 699.428 699.428" xmlns="http://www.w3.org/2000/svg" id="copy">
+    <path d="M502.714 0H240.428C194.178 0 153 42.425 153 87.429l-25.267.59c-46.228 0-84.019 41.834-84.019 86.838V612c0 45.004 41.179 87.428 87.429 87.428H459c46.249 0 87.428-42.424 87.428-87.428h21.857c46.25 0 87.429-42.424 87.429-87.428v-349.19zM459 655.715H131.143c-22.95 0-43.714-21.441-43.714-43.715V174.857c0-22.272 18.688-42.993 41.638-42.993l23.933-.721v393.429C153 569.576 194.178 612 240.428 612h262.286c0 22.273-20.765 43.715-43.714 43.715zm153-131.143c0 22.271-20.765 43.713-43.715 43.713H240.428c-22.95 0-43.714-21.441-43.714-43.713V87.429c0-22.272 20.764-43.714 43.714-43.714H459c-.351 50.337 0 87.975 0 87.975 0 45.419 40.872 86.882 87.428 86.882H612zm-65.572-349.715c-23.277 0-43.714-42.293-43.714-64.981V44.348L612 174.857zm-43.714 131.537H306c-12.065 0-21.857 9.77-21.857 21.835s9.792 21.835 21.857 21.835h196.714c12.065 0 21.857-9.771 21.857-21.835 0-12.065-9.792-21.835-21.857-21.835zm0 109.176H306c-12.065 0-21.857 9.77-21.857 21.834 0 12.066 9.792 21.836 21.857 21.836h196.714c12.065 0 21.857-9.77 21.857-21.836 0-12.064-9.792-21.834-21.857-21.834z"
+    ></path>
+  </symbol>
+  <symbol viewBox="0 0 60.015 60.015" xmlns="http://www.w3.org/2000/svg" id="reply">
+    <path d="M42.007 0h-24c-9.925 0-18 8.075-18 18v14c0 9.59 7.538 17.452 17 17.973v8.344a1.694 1.694 0 0 0 1.699 1.698c.44 0 .873-.173 1.198-.498l1.876-1.876C26.708 52.713 33.259 50 40.227 50h1.78c9.925 0 18-8.075 18-18V18c0-9.925-8.075-18-18-18zm16 32c0 8.822-7.178 16-16 16h-1.78c-7.502 0-14.556 2.921-19.86 8.226l-1.359 1.359V44a1 1 0 1 0-2 0v3.949c-8.356-.52-15-7.465-15-15.949V18c0-8.822 7.178-16 16-16h24c8.822 0 16 7.178 16 16v14z"></path>
+  </symbol>
+</svg>
+<footer class = 'footer'>
+  <div class = 'footer_inner wrap pale'>
+    <p>&copy;&nbsp;<span class = 'year'></span>&nbsp;LongAgo.
+    Designed by  <a href = '<no value>' title = 'Linkedin Profile'>张时中</a></p>
+  </div>
+</footer>
+<script src = 'http://blog.zhang.today/js/index.min.56014eb00b47a2f69cfeb38ce036f1b5129cac91d08e354a6ff26872e77fce3571caff31f49435056a7fa0cc950b179d8e38c4042989ad67743976ea5b6e9a71.js'></script>
+
+  </body>
+</html>

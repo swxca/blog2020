@@ -6,10 +6,19 @@
     <description>Recent content in Categories on LongAgo</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2020,all rights reserved.</copyright>
-    <lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://blog.zhang.today/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>go</title>
+      <link>http://blog.zhang.today/categories/go/</link>
+      <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.zhang.today/categories/go/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>computer</title>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <title>消息队列nsq工作流程解析（一） nsqd组件.md | LongAgo</title>
+  <meta charset='utf-8'>
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  
+<meta property = 'og:locale' content = 'en_US' />
+<meta property="og:type" content="article">
+<meta property = 'og:title' content = '消息队列nsq工作流程解析（一）---nsqd组件.md' />
+<meta name="description" content=" 这系列文章我想从0开始，在读者的心中构建一个完整的nsq消息队列模型 包括但不限于以下知识点
+ nsq整体工作流程 nsq各组件工作细节 nsq代码实战 nsq源码解析   那么什么是消息队列呢?我想有必要在学习nsq之前仔细理解。
+什么是nsq？ 这篇文章不是讲nsq如何使用，网上已经有很多对nsq消息队列做名词解 …">
+<meta property = 'og:description' content = ' 这系列文章我想从0开始，在读者的心中构建一个完整的nsq消息队列模型 包括但不限于以下知识点
+ nsq整体工作流程 nsq各组件工作细节 nsq代码实战 nsq源码解析   那么什么是消息队列呢?我想有必要在学习nsq之前仔细理解。
+什么是nsq？ 这篇文章不是讲nsq如何使用，网上已经有很多对nsq消息队列做名词解 …'>
+<meta property = 'og:url' content = 'http://blog.zhang.today/post/go/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/' />
+<meta property = 'og:image' content = 'http://blog.zhang.today/images/fast-lane.jpg'/>
+<meta name = 'twitter:card' content = 'summary_large_image' />
+<meta name = 'twitter:creator' content = ''>
+<meta name = 'twitter:title' content = '消息队列nsq工作流程解析（一）---nsqd组件.md' />
+<meta property = 'twitter:description'  content = ' 这系列文章我想从0开始，在读者的心中构建一个完整的nsq消息队列模型 包括但不限于以下知识点
+ nsq整体工作流程 nsq各组件工作细节 nsq代码实战 nsq源码解析   那么什么是消息队列呢?我想有必要在学习nsq之前仔细理解。
+什么是nsq？ 这篇文章不是讲nsq如何使用，网上已经有很多对nsq消息队列做名词解 …'/>
+<meta name = 'twitter:image' content = 'http://blog.zhang.today/images/fast-lane.jpg' />
+<link rel='apple-touch-icon' sizes='180x180' href='http://blog.zhang.today/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='http://blog.zhang.today/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='http://blog.zhang.today/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='http://blog.zhang.today/images/icons/site.webmanifest'>
+
+  <link rel='canonical' href='http://blog.zhang.today/post/go/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/'>
+  <link rel = 'stylesheet' href = 'http://blog.zhang.today/css/styles.bf17aa32e654a5aa2f07d98bd607a95ff5e36b1f2ea241df0e352fa1cf427067f76b5d01fceacecc8e434805edeedc29099c0132e224fd6ba8148b7f0cbde26f.css' integrity = 'sha512-vxeqMuZUpaovB9mL1gepX/Xjax8uokHfDjUvoc9CcGf3a10B/OrOzI5DSAXt7twpCZwBMuIk/WuoFIt/DL3ibw=='>
+</head>
+
+  <body><div class = 'nav-drop'>
+  <div class = 'nav-body'>
+      <a href = 'http://blog.zhang.today/about/' class = 'nav_item'>关于我</a>
+      <a href = 'http://blog.zhang.today/categories/heart/' class = 'nav_item'>阳明心学</a>
+      <a href = 'http://blog.zhang.today/categories/computer/' class = 'nav_item'>计算机技术</a>
+      <a href = 'http://blog.zhang.today/tags/go/' class = 'nav_item'>go</a>
+      <a href = 'http://blog.zhang.today/categories/%E9%BB%84%E5%B3%A5' class = 'nav_item'>黄峥</a>
+      <a href = 'http://blog.zhang.today/categories/%E4%BB%BB%E6%AD%A3%E9%9D%9E' class = 'nav_item'>任正非</a>
+      <a href = 'http://blog.zhang.today/categories/%E6%AE%B5%E6%B0%B8%E5%B9%B3' class = 'nav_item'>段永平</a>
+      <a href = 'http://blog.zhang.today/categories/stock' class = 'nav_item'>股票</a>
+      <a href = 'http://blog.zhang.today/tags/hugo' class = 'nav_item'>hugo-theme-learning</a>
+    <div class = 'nav-close'></div>
+  </div>
+</div><header class = 'nav' >
+  <nav class = 'nav-menu'>
+    <a href='http://blog.zhang.today/' class = 'nav-brand nav_item'>LongAgo</a>
+    <div class = 'nav_bar-wrap'>
+      <div class = 'nav_bar'></div>
+    </div>
+  </nav>
+</header>
+
+
+    <main>
+<section class = 'post_header' style = 'background-image:url(http://blog.zhang.today/images/fast-lane.jpg);'>
+  <h1 class='post_title'>消息队列nsq工作流程解析（一）---nsqd组件.md</h1>
+</section>
+<div class = 'post'>
+  <article class='post_content'><blockquote>
+<p>这系列文章我想从0开始，在读者的心中构建一个完整的nsq消息队列模型
+包括但不限于以下知识点</p>
+<ol>
+<li>nsq整体工作流程</li>
+<li>nsq各组件工作细节</li>
+<li>nsq代码实战</li>
+<li>nsq源码解析</li>
+</ol>
+</blockquote>
+<p>那么<a href="http://www.baidu.com">什么是消息队列</a>呢?我想有必要在学习nsq之前仔细理解。</p>
+<h2 id="什么是nsq">什么是nsq？</h2>
+<p>这篇文章不是讲nsq如何使用，网上已经有很多对nsq消息队列做名词解释的文章了，关于什么是nsq消息队列，这里可能只做简单的复习。</p>
+<p>nsq有三个组件，相互配合做到分布式消息队列:</p>
+<ol>
+<li>nsqd</li>
+<li>nsqlookupd</li>
+<li>nsqadmin</li>
+</ol>
+<p><strong>网上看了很多文档性质的文章，阅读起来给我的感觉是，就好像组装一个机器人，一股脑写清楚了所有的零件用途。但哪个零件是心脏，哪个零件是指甲和头发，并没有特别提到，因此我在看的过程中有很多疑惑。所以想要理解nsq，还需要庖丁解牛，有主次，分块理解</strong></p>
+<h2 id="nsq的主体nsqd组件">nsq的主体：nsqd组件</h2>
+<p>现在让我们忘记其他两个组件，一步步分析</p>
+<p>其实nsqd组件本身就是一个消息队列，他可以脱离其他组件工作，因此：</p>
+<p>令：概念nsq消息队列=nsqd （忽略组件2，3）</p>
+<p>举一个例子，用户在订单系统，付款，下订单成功后，可能会通知三个以上的系统，</p>
+<p>如下单成功了：</p>
+<ol>
+<li>通知增加某用户积分（积分系统）</li>
+<li>通知减掉已被买走的库存数量（库存系统）</li>
+<li>通知商家进行发货（发货系统）</li>
+</ol>
+<p><strong>订单系统是如何通知nsqd的呢</strong>?订单创建成功后，订单系统会给nsqd发送一条&quot;order_succeed&quot;的通知，nsqd会接收到这条通知，然后nsqd又会把这条消息，发送给每个订阅在nsqd上的系统。这条通知&quot;order_succeed&rdquo;，简单理解就是topic的概念。</p>
+<blockquote>
+<p>预告：nsqd与订单系统如何通信？是tcp还是http？或是其他通信协议</p>
+</blockquote>
+<p><img src="http://blog.zhang.today/images/nsq01.jpg" alt="nsqd流程图" title="流程图"></p>
+<blockquote>
+<p>一个topic就是程序发布消息的一个逻辑键，当程序第一次发布消息时就会创建topic</p>
+</blockquote>
+<p>这时候我们发现客户越来越多，积分系统需要排队比较久了，我们要做的就是给积分系统分流，也就是扩展积分系统。积分系统可以是一个容器，也可以是一台机器，我们可以加入一个负载均衡的工具，把流量平均的转发到两套积分系统上，给积分系统分流。像这样，</p>
+<p><img src="http://blog.zhang.today/images/nsq02.jpg" alt="nsqd流程图" title="流程图"></p>
+<p>如果其他系统也出校效率问题，也可以效仿积分系统，加一层负责均衡。负载均衡的分流工作都是一套代码，这样做，我们就已经repeat myself了。因此，nsqd中，已经封装了这个负载均衡工具，名字叫做channel。</p>
+<p><img src="http://blog.zhang.today/images/nsq03.jpg" alt="nsqd流程图" title="流程图"></p>
+<blockquote>
+<p>channel与消费者相关，是消费者之间的负载均衡，channel在某种意义上来说是一个“队列”。每当一个发布者发送一条消息到一个topic，消息会被复制到所有消费者连接的channel上，消费者通过这个特殊的channel读取消息，实际上，在消费者第一次订阅时就会创建channel。Channel会将消息进行排列，如果没有消费者读取消息，消息首先会在内存中排队，当量太大时就会被保存到磁盘中。</p>
+</blockquote>
+<p><strong>解释一下图的流程：</strong></p>
+<p>订单系统发送一条&quot;order_succeed&quot;的消息到nsqd消息队列，nsqd消息队列会将这条消息复制到所有channel上。channel会做一个负载均衡，按照一定的算法，将这条消息推送到任意的一台消费者实例上。</p>
+<h2 id="总结">总结</h2>
+<ol>
+<li>因为是本系列的第一篇，所以开头讲明了本系列文章的主要框架和之后会涉及到的内容</li>
+<li>简单复习重点，nsq的三个组件</li>
+<li>重点介绍了nsqd这个组件的相关概念和工作流程，topic，channel这两个重要概念</li>
+</ol>
+<blockquote>
+<p>预告：消息队列如果是单实例的，那简直太危险了，这个实例一挂，我们的所有系统都将瘫痪，因此，下一节将重点介绍如何用另一个nsq的组件nsqlookupd部署一个分布式的消息队列。</p>
+</blockquote>
+
+    <div class = 'post_extra'><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
+  <svg>
+    <use xlink:href="#copy"></use>
+  </svg>  
+</div>
+
+    </div>
+  <div class = 'author'>
+    <a href = '' target = "张时中's profile" class = 'author_pic'>
+      <img src = 'http://blog.zhang.today/images/%E5%BC%A0%E6%97%B6%E4%B8%AD.jpg' alt = ''>
+    </a>
+    <div class = 'author_meta'>
+      <a class = 'author_name' href = '' title = "map[Count:张时中]&#39;s profile">张时中</a>
+      <p class = 'pale author_bio solo'>力求用最朴素的思维和语言，解释清楚每一个知识点</p>
+    </div>
+  </div>
+
+  </article>
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'kil9nDon6gQoCfT1ipG1WVkD-gzGzoHsz',
+        appKey: '5G9LaVE9valii0rVlefUHQO0',
+        notify: 'false', 
+        verify: 'false', 
+        avatar:'gg', 
+        placeholder: '说点什么吧...',
+        visitor: 'true'
+    });
+  </script>
+
+  <aside><h3>More from LongAgo</h3>
+<ul class='posts aside'>
+<li class = 'post_item'>
+  <a class = 'post_card' href='http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/' title = 'hugo搭建及自动部署（二）' style = 'background-image: url(http://blog.zhang.today/images/artist.jpg);'>
+  </a>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_meta'>
+      <a href = 'http://blog.zhang.today/tags/hugo' class = 'post_tag'>hugo
+      </a><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
+  <svg>
+    <use xlink:href="#copy"></use>
+  </svg>  
+</div>
+
+    </div>
+    <h3 class = 'post_link'>
+      <a href='http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/'>hugo搭建及自动部署（二）</a>
+    </h3>
+    <p class = 'pale'>自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就可以访问了，那这里为什么叫自动部署呢？自动一词体现在哪儿呢？
+ …</p>
+  </div>
+</li>
+
+<li class = 'post_item'>
+  <a class = 'post_card' href='http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/' title = 'hugo搭建及自动部署（一）' style = 'background-image: url(http://blog.zhang.today/images/artist.jpg);'>
+  </a>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_meta'>
+      <a href = 'http://blog.zhang.today/tags/hugo' class = 'post_tag'>hugo
+      </a><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
+  <svg>
+    <use xlink:href="#copy"></use>
+  </svg>  
+</div>
+
+    </div>
+    <h3 class = 'post_link'>
+      <a href='http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/'>hugo搭建及自动部署（一）</a>
+    </h3>
+    <p class = 'pale'>hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的静态资源文件（包括html，css，js）。
+关键词：小程序；指定的目录结构；静态资源文 …</p>
+  </div>
+</li>
+
+</ul>
+
+  </aside>
+</div>
+<script src = 'http://blog.zhang.today/js/autosize.min.js'></script>
+<script src = 'http://blog.zhang.today/js/timeago.js'></script>
+    </main><svg width="0" height="0" class="hidden">
+  <symbol viewBox="0 0 699.428 699.428" xmlns="http://www.w3.org/2000/svg" id="copy">
+    <path d="M502.714 0H240.428C194.178 0 153 42.425 153 87.429l-25.267.59c-46.228 0-84.019 41.834-84.019 86.838V612c0 45.004 41.179 87.428 87.429 87.428H459c46.249 0 87.428-42.424 87.428-87.428h21.857c46.25 0 87.429-42.424 87.429-87.428v-349.19zM459 655.715H131.143c-22.95 0-43.714-21.441-43.714-43.715V174.857c0-22.272 18.688-42.993 41.638-42.993l23.933-.721v393.429C153 569.576 194.178 612 240.428 612h262.286c0 22.273-20.765 43.715-43.714 43.715zm153-131.143c0 22.271-20.765 43.713-43.715 43.713H240.428c-22.95 0-43.714-21.441-43.714-43.713V87.429c0-22.272 20.764-43.714 43.714-43.714H459c-.351 50.337 0 87.975 0 87.975 0 45.419 40.872 86.882 87.428 86.882H612zm-65.572-349.715c-23.277 0-43.714-42.293-43.714-64.981V44.348L612 174.857zm-43.714 131.537H306c-12.065 0-21.857 9.77-21.857 21.835s9.792 21.835 21.857 21.835h196.714c12.065 0 21.857-9.771 21.857-21.835 0-12.065-9.792-21.835-21.857-21.835zm0 109.176H306c-12.065 0-21.857 9.77-21.857 21.834 0 12.066 9.792 21.836 21.857 21.836h196.714c12.065 0 21.857-9.77 21.857-21.836 0-12.064-9.792-21.834-21.857-21.834z"
+    ></path>
+  </symbol>
+  <symbol viewBox="0 0 60.015 60.015" xmlns="http://www.w3.org/2000/svg" id="reply">
+    <path d="M42.007 0h-24c-9.925 0-18 8.075-18 18v14c0 9.59 7.538 17.452 17 17.973v8.344a1.694 1.694 0 0 0 1.699 1.698c.44 0 .873-.173 1.198-.498l1.876-1.876C26.708 52.713 33.259 50 40.227 50h1.78c9.925 0 18-8.075 18-18V18c0-9.925-8.075-18-18-18zm16 32c0 8.822-7.178 16-16 16h-1.78c-7.502 0-14.556 2.921-19.86 8.226l-1.359 1.359V44a1 1 0 1 0-2 0v3.949c-8.356-.52-15-7.465-15-15.949V18c0-8.822 7.178-16 16-16h24c8.822 0 16 7.178 16 16v14z"></path>
+  </symbol>
+</svg>
+<footer class = 'footer'>
+  <div class = 'footer_inner wrap pale'>
+    <p>&copy;&nbsp;<span class = 'year'></span>&nbsp;LongAgo.
+    Designed by  <a href = '<no value>' title = 'Linkedin Profile'>张时中</a></p>
+  </div>
+</footer>
+<script src = 'http://blog.zhang.today/js/index.min.56014eb00b47a2f69cfeb38ce036f1b5129cac91d08e354a6ff26872e77fce3571caff31f49435056a7fa0cc950b179d8e38c4042989ad67743976ea5b6e9a71.js'></script>
+
+  </body>
+</html>

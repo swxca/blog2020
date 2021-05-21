@@ -13,10 +13,10 @@
     
     <item>
       <title>消息队列nsq工作流程解析（一）---nsqd组件.md</title>
-      <link>http://blog.zhang.today/post/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/</link>
+      <link>http://blog.zhang.today/post/go/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/</link>
       <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/</guid>
+      <guid>http://blog.zhang.today/post/go/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/</guid>
       <description> 这系列文章我想从0开始，在读者的心中构建一个完整的nsq消息队列模型 包括但不限于以下知识点
  nsq整体工作流程 nsq各组件工作细节 nsq代码实战 nsq源码解析   那么什么是消息队列呢?我想有必要在学习nsq之前仔细理解。
 什么是nsq？ 这篇文章不是讲nsq如何使用，网上已经有很多对nsq消息队列做名词解释的文章了，关于什么是nsq消息队列，这里可能只做简单的复习。

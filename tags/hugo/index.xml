@@ -13,10 +13,10 @@
     
     <item>
       <title>hugo搭建及自动部署（二）</title>
-      <link>http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/</link>
+      <link>http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/</link>
       <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/</guid>
+      <guid>http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/</guid>
       <description>自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就可以访问了，那这里为什么叫自动部署呢？自动一词体现在哪儿呢？
 按照之前的思路：
 首先配置基于nginx的静态网站，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。
@@ -27,10 +27,10 @@ $ cat /etc/nginx/nginx.conf user 用户; worker_processes auto; pid /run/nginx.p
     
     <item>
       <title>hugo搭建及自动部署（一）</title>
-      <link>http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</link>
+      <link>http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</link>
       <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</guid>
+      <guid>http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</guid>
       <description>hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的静态资源文件（包括html，css，js）。
 关键词：小程序；指定的目录结构；静态资源文件
 以下所有步骤都围绕这是三个关键词进行，以下操作可能会遇到git的push不了，hugo因为环境变量不能运行等问题，请自行google
@@ -44,30 +44,30 @@ $ git submodule add https://github.com/onweru/hugo-swift-theme themes/hugo-swift
     
     <item>
       <title>Creating a New Theme</title>
-      <link>http://blog.zhang.today/post/creating-a-new-theme/</link>
+      <link>http://blog.zhang.today/post/%E7%B3%BB%E7%BB%9F%E7%A4%BA%E4%BE%8B/creating-a-new-theme/</link>
       <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/creating-a-new-theme/</guid>
+      <guid>http://blog.zhang.today/post/%E7%B3%BB%E7%BB%9F%E7%A4%BA%E4%BE%8B/creating-a-new-theme/</guid>
       <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
 We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
     </item>
     
     <item>
       <title>(Hu)go Template Primer</title>
-      <link>http://blog.zhang.today/post/goisforlovers/</link>
+      <link>http://blog.zhang.today/post/%E7%B3%BB%E7%BB%9F%E7%A4%BA%E4%BE%8B/goisforlovers/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/goisforlovers/</guid>
+      <guid>http://blog.zhang.today/post/%E7%B3%BB%E7%BB%9F%E7%A4%BA%E4%BE%8B/goisforlovers/</guid>
       <description>Hugo uses the excellent Go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in Go templates.
 This document is a brief primer on using Go templates.</description>
     </item>
     
     <item>
       <title>Getting Started with Hugo</title>
-      <link>http://blog.zhang.today/post/hugoisforlovers/</link>
+      <link>http://blog.zhang.today/post/%E7%B3%BB%E7%BB%9F%E7%A4%BA%E4%BE%8B/hugoisforlovers/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/hugoisforlovers/</guid>
+      <guid>http://blog.zhang.today/post/%E7%B3%BB%E7%BB%9F%E7%A4%BA%E4%BE%8B/hugoisforlovers/</guid>
       <description>Step 1. Install Hugo Go to Hugo releases and download the appropriate version for your OS and architecture.
 Save it somewhere specific as we will be using it in the next step.
 More complete instructions are available at Install Hugo
@@ -78,10 +78,10 @@ Follow the following steps:
     
     <item>
       <title>Migrate to Hugo from Jekyll</title>
-      <link>http://blog.zhang.today/post/migrate-from-jekyll/</link>
+      <link>http://blog.zhang.today/post/%E7%B3%BB%E7%BB%9F%E7%A4%BA%E4%BE%8B/migrate-from-jekyll/</link>
       <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/migrate-from-jekyll/</guid>
+      <guid>http://blog.zhang.today/post/%E7%B3%BB%E7%BB%9F%E7%A4%BA%E4%BE%8B/migrate-from-jekyll/</guid>
       <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
 ▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
 ▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
