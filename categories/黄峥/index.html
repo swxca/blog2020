@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang='en'><head>
-  <title>从gopath到gomod | LongAgo</title>
+  <title>黄峥 | LongAgo</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.71.1" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
   <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
-  
 <meta property = 'og:locale' content = 'en_US' />
 <meta property="og:type" content="article">
-<meta property = 'og:title' content = '从gopath到gomod' />
-<meta name="description" content="本文不只局限在go语言，想从计算机语言的角度出发，从为什么需要环境变量讲起，一次性讲明白关于go的依赖，环境变量，gomod等一系列概念
- 为什么需要环境变量？ 除了html之类的文本标记语言之外，无论是java还是go，又或是别的语言，基本都需要环境变量。我们基本上能看到，每种语言的第一课都是配置环境变量，比如，设 …">
-<meta property = 'og:description' content = '本文不只局限在go语言，想从计算机语言的角度出发，从为什么需要环境变量讲起，一次性讲明白关于go的依赖，环境变量，gomod等一系列概念
- 为什么需要环境变量？ 除了html之类的文本标记语言之外，无论是java还是go，又或是别的语言，基本都需要环境变量。我们基本上能看到，每种语言的第一课都是配置环境变量，比如，设 …'>
-<meta property = 'og:url' content = 'http://blog.zhang.today/post/go/%E4%BB%8Egopath%E5%88%B0gomod/' />
-<meta property = 'og:image' content = 'http://blog.zhang.today/images/stuck.jpg'/>
+<meta property = 'og:title' content = '黄峥' />
+<meta name="description" content="">
+<meta property = 'og:description' content = ''>
+<meta property = 'og:url' content = 'http://blog.zhang.today/categories/%E9%BB%84%E5%B3%A5/' />
+<meta property = 'og:image' content = 'images/%!s()'/>
 <meta name = 'twitter:card' content = 'summary_large_image' />
 <meta name = 'twitter:creator' content = ''>
-<meta name = 'twitter:title' content = '从gopath到gomod' />
-<meta property = 'twitter:description'  content = '本文不只局限在go语言，想从计算机语言的角度出发，从为什么需要环境变量讲起，一次性讲明白关于go的依赖，环境变量，gomod等一系列概念
- 为什么需要环境变量？ 除了html之类的文本标记语言之外，无论是java还是go，又或是别的语言，基本都需要环境变量。我们基本上能看到，每种语言的第一课都是配置环境变量，比如，设 …'/>
-<meta name = 'twitter:image' content = 'http://blog.zhang.today/images/stuck.jpg' />
+<meta name = 'twitter:title' content = '黄峥' />
+<meta property = 'twitter:description'  content = ''/>
+<meta name = 'twitter:image' content = 'images/%!s()' />
 <link rel='apple-touch-icon' sizes='180x180' href='http://blog.zhang.today/images/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='http://blog.zhang.today/images/icons/favicon-32x32.png'>
 <link rel='icon' type='image/png' sizes='16x16' href='http://blog.zhang.today/images/icons/favicon-16x16.png'>
 <link rel='manifest' href='http://blog.zhang.today/images/icons/site.webmanifest'>
 
-  <link rel='canonical' href='http://blog.zhang.today/post/go/%E4%BB%8Egopath%E5%88%B0gomod/'>
+  <link rel='canonical' href='http://blog.zhang.today/categories/%E9%BB%84%E5%B3%A5/'>
   <link rel = 'stylesheet' href = 'http://blog.zhang.today/css/styles.bf17aa32e654a5aa2f07d98bd607a95ff5e36b1f2ea241df0e352fa1cf427067f76b5d01fceacecc8e434805edeedc29099c0132e224fd6ba8148b7f0cbde26f.css' integrity = 'sha512-vxeqMuZUpaovB9mL1gepX/Xjax8uokHfDjUvoc9CcGf3a10B/OrOzI5DSAXt7twpCZwBMuIk/WuoFIt/DL3ibw=='>
 </head>
 
@@ -54,54 +50,26 @@
 
 
     <main>
-<section class = 'post_header' style = 'background-image:url(http://blog.zhang.today/images/stuck.jpg);'>
-  <h1 class='post_title'>从gopath到gomod</h1>
-</section>
-<div class = 'post'>
-  <article class='post_content'><blockquote>
-<p>本文不只局限在go语言，想从计算机语言的角度出发，从为什么需要环境变量讲起，一次性讲明白关于go的依赖，环境变量，gomod等一系列概念</p>
-</blockquote>
-<h2 id="为什么需要环境变量">为什么需要环境变量？</h2>
-<p>除了html之类的文本标记语言之外，无论是java还是go，又或是别的语言，基本都需要环境变量。我们基本上能看到，每种语言的第一课都是配置环境变量，比如，设置javabin，javahome之类的，go语言的话就是gopath，gobin。</p>
-<p>每次配置这些东西，如果没有搞清楚原理，那几乎是遇到问题，就要研究半天，所以这里想一次性讲明白底层的原理。</p>
-
-    <div class = 'post_extra'><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
-  <svg>
-    <use xlink:href="#copy"></use>
-  </svg>  
+<div class = 'intro'>
+  <div class = 'intro_inner'>
+    <div><div class = 'waves'>
+  <canvas id = 'waves' class = 'waves_inner'></canvas>
+</div>
+<script src =  'http://blog.zhang.today/js/sine-waves.min.js'></script>
+<script src = 'http://blog.zhang.today/js/audio.js'></script>
+</div>
+    <section>
+      <h1 class = 'intro_headline'>黄峥</h1>
+      <p class = 'intro_desc'></p>
+    </section>
+  </div>
 </div>
 
-    </div>
-  <div class = 'author'>
-    <a href = '' target = "张时中's profile" class = 'author_pic'>
-      <img src = 'http://blog.zhang.today/images/%E5%BC%A0%E6%97%B6%E4%B8%AD.jpg' alt = ''>
-    </a>
-    <div class = 'author_meta'>
-      <a class = 'author_name' href = '' title = "map[Count:张时中]&#39;s profile">张时中</a>
-      <p class = 'pale author_bio solo'>力求用最朴素的思维和语言，解释清楚每一个知识点</p>
-    </div>
-  </div>
 
-  </article>
-  
-  <div id="vcomments"></div>
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-  <script type="text/javascript">
-    new Valine({
-        el: '#vcomments' ,
-        appId: 'kil9nDon6gQoCfT1ipG1WVkD-gzGzoHsz',
-        appKey: '5G9LaVE9valii0rVlefUHQO0',
-        notify: 'false', 
-        verify: 'false', 
-        avatar:'gg', 
-        placeholder: '说点什么吧...',
-        visitor: 'true'
-    });
-  </script>
 
-  <aside><h3>More from LongAgo</h3>
-<ul class='posts aside'>
+
+<ul class='posts wrap' id = 'posts'>
+    
 <li class = 'post_item'>
   <a class = 'post_card' href='http://blog.zhang.today/post/%E9%BB%84%E5%B3%A5/%E4%BA%BA%E7%94%9F%E7%BB%8F%E5%8E%86%E7%AF%87/' title = '人生经历篇' style = 'background-image: url(http://blog.zhang.today/images/stuck.jpg);'>
   </a>
@@ -124,30 +92,10 @@
   </div>
 </li>
 
-<li class = 'post_item'>
-  <a class = 'post_card' href='http://blog.zhang.today/post/go/go%E5%9F%BA%E7%A1%80%E4%B9%8Bslice/' title = 'go基础之slice' style = 'background-image: url(http://blog.zhang.today/images/stuck.jpg);'>
-  </a>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_meta'><div class = 'copy' data-share = 'Share Story' data-copied = 'Link Copied'>
-  <svg>
-    <use xlink:href="#copy"></use>
-  </svg>  
-</div>
-
-    </div>
-    <h3 class = 'post_link'>
-      <a href='http://blog.zhang.today/post/go/go%E5%9F%BA%E7%A1%80%E4%B9%8Bslice/'>go基础之slice</a>
-    </h3>
-    <p class = 'pale'>slice与数组的关系 slice单词的翻译的名词有薄片，片的意思，动词是切片。所以slice就像数组的一片，他不是一个数组，只有依赖底层数组，slice才有意义，这从slice的 …</p>
-  </div>
-</li>
-
 </ul>
 
-  </aside>
-</div>
-<script src = 'http://blog.zhang.today/js/autosize.min.js'></script>
-<script src = 'http://blog.zhang.today/js/timeago.js'></script>
+
+
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 699.428 699.428" xmlns="http://www.w3.org/2000/svg" id="copy">
     <path d="M502.714 0H240.428C194.178 0 153 42.425 153 87.429l-25.267.59c-46.228 0-84.019 41.834-84.019 86.838V612c0 45.004 41.179 87.428 87.429 87.428H459c46.249 0 87.428-42.424 87.428-87.428h21.857c46.25 0 87.429-42.424 87.429-87.428v-349.19zM459 655.715H131.143c-22.95 0-43.714-21.441-43.714-43.715V174.857c0-22.272 18.688-42.993 41.638-42.993l23.933-.721v393.429C153 569.576 194.178 612 240.428 612h262.286c0 22.273-20.765 43.715-43.714 43.715zm153-131.143c0 22.271-20.765 43.713-43.715 43.713H240.428c-22.95 0-43.714-21.441-43.714-43.713V87.429c0-22.272 20.764-43.714 43.714-43.714H459c-.351 50.337 0 87.975 0 87.975 0 45.419 40.872 86.882 87.428 86.882H612zm-65.572-349.715c-23.277 0-43.714-42.293-43.714-64.981V44.348L612 174.857zm-43.714 131.537H306c-12.065 0-21.857 9.77-21.857 21.835s9.792 21.835 21.857 21.835h196.714c12.065 0 21.857-9.771 21.857-21.835 0-12.065-9.792-21.835-21.857-21.835zm0 109.176H306c-12.065 0-21.857 9.77-21.857 21.834 0 12.066 9.792 21.836 21.857 21.836h196.714c12.065 0 21.857-9.77 21.857-21.836 0-12.064-9.792-21.834-21.857-21.834z"
