@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>计算机基础 on LongAgo</title>
+    <link>http://47.98.216.98:8003/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</link>
+    <description>Recent content in 计算机基础 on LongAgo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2020,all rights reserved.</copyright>
+    <lastBuildDate>Fri, 21 May 2021 16:53:26 +0800</lastBuildDate>
+    
+	<atom:link href="http://47.98.216.98:8003/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>日常操作知识点1</title>
+      <link>http://47.98.216.98:8003/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C%E7%9F%A5%E8%AF%86%E7%82%B91/</link>
+      <pubDate>Fri, 21 May 2021 16:53:26 +0800</pubDate>
+      
+      <guid>http://47.98.216.98:8003/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C%E7%9F%A5%E8%AF%86%E7%82%B91/</guid>
+      <description>目前A计划已经不需要投入很多时间了，只需要每天开收盘看一下。长期主义，然后打算做点其他。把网站重新支棱起来了。 支棱的过程，花了两天熟悉了下。这里按浏览器打开顺序记录到一起。
+  hugo页面丢失样式  这里是hugo的配置出了问题，在~/blog2020/config.toml里面，修改baseurl参数即可，hugo是增量编译的，所以之前错误的baseURL手动改一下。
+更新hugo的脚本  免输密码 echo 密码 | sudo 命令     #!/bin/bash echo -e &amp;#34;\033[0;32mDeploying updates to GitHub...\033[0m&amp;#34; # Build the project. echo 密码 | sudo hugo # if using a theme, replace with `hugo -t &amp;lt;YOURTHEME&amp;gt;` # Go To Public folder cd public # Add changes to git. echo 密码 | sudo git add . # Commit changes. msg=&amp;#34;rebuilding site `date`&amp;#34; if [ $# -eq 1 ] then msg=&amp;#34;$1&amp;#34; fi echo jupyter | sudo git commit -m &amp;#34;$msg&amp;#34; # Push source and build repos.</description>
+    </item>
+    
+  </channel>
+</rss>
