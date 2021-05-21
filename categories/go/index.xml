@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>go on LongAgo</title>
-    <link>http://blog.zhang.today/categories/go/</link>
+    <link>http://47.98.216.98:8003/categories/go/</link>
     <description>Recent content in go on LongAgo</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2020,all rights reserved.</copyright>
     <lastBuildDate>Thu, 21 May 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://blog.zhang.today/categories/go/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://47.98.216.98:8003/categories/go/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>go基础之slice</title>
-      <link>http://blog.zhang.today/post/go/go%E5%9F%BA%E7%A1%80%E4%B9%8Bslice/</link>
+      <link>http://47.98.216.98:8003/post/go/go%E5%9F%BA%E7%A1%80%E4%B9%8Bslice/</link>
       <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/go/go%E5%9F%BA%E7%A1%80%E4%B9%8Bslice/</guid>
+      <guid>http://47.98.216.98:8003/post/go/go%E5%9F%BA%E7%A1%80%E4%B9%8Bslice/</guid>
       <description>slice与数组的关系 slice单词的翻译的名词有薄片，片的意思，动词是切片。所以slice就像数组的一片，他不是一个数组，只有依赖底层数组，slice才有意义，这从slice的定义就可以看出。
 slice是一个轻量级的数据结构，翻译过来就是slice就像type xxx struct一样，是一种数据结构，主要构成是：
  指针，指针指向第一个slice元素对应的底层数组元素的地址，要注意的是slice的第一个元素并不一定就是数组的第一个元素。 长度，对应slice中元素的数目。 容量，长度不能超过容量，容量一般是从slice的开始位置到底层数据的结尾位置。  知识点概括  slice的定义在上面部分已经给出 s:=a[i,j],a是一个数组，这个表达式的意思就是创建了一个新的slice，叫做s。引用a的从第i个元素开始，第j-1个元素截止。 s[:],s[:2],s[4:],这种不填索引的情况，代表着直到结尾或者开始。这种操作，叫切片操作。 slice的赋值，传递，都是传递着slice的指针。  func reverse(s []int) { for i, j := 0, len(s)-1; i &amp;lt; j; i, j = i+1, j-1 { s[i], s[j] = s[j], s[i] } } slice的初始化和数组完全类似，只是不指定长度 slice之间不能比较，参考不可比较主要是由于间接引用造成的。slice只能和nil比较 slice为nil，len和cap都是0，但slice非nil，len和cap也可能是0  slice的实现 </description>
@@ -24,10 +24,10 @@ slice是一个轻量级的数据结构，翻译过来就是slice就像type xxx s
     
     <item>
       <title>go基础之数组</title>
-      <link>http://blog.zhang.today/post/go/go%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E7%BB%84/</link>
+      <link>http://47.98.216.98:8003/post/go/go%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E7%BB%84/</link>
       <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/go/go%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E7%BB%84/</guid>
+      <guid>http://47.98.216.98:8003/post/go/go%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E7%BB%84/</guid>
       <description>我认为学习一门语言重要的不是去记一些，如何定义数组，数组什么形式，&amp;hellip;型定义，这些语法的东西，因为计算机语言跟我们用来沟通的语言有很多相似之处，语言的本质是用来交流，我们学习英文会记很多语法，但最后发现也没有因为我们记了这么多语法就能更好的和外国人交流。舍本逐末不仅浪费时间，还消耗精力。我认为更多的时间应该应该放在理解更底层的东西
  知识点概括  数组是固定长度的，在go语言中我们一般用slice代替数组，因为slice可以动态的改变长度。 数组所有元素的类型必须相同。 数组的0值，就是对应数组每个元素的0值。 数组的定义：  var q [3]int = [3]int{1, 2, 3} q := [&amp;hellip;]int{1, 2, 3} a:=[3]int{1,2,3}     注意，在类型判断中，区别array和slice的唯一区别就是array是[3]int,slice是[]int
  数组由两部分组成：长度和数据类型，所以判断两个数组是否相等，一定是长度和数据类型都相等的情况下，每个元素分别相等。 数组也可以像struct那样，字面量初始化。把数组看成是一个  array{ index int obj object }
@@ -38,10 +38,10 @@ a:=[3]int{1,2,3} b:=a a[1]=100 fmt.Printf(&amp;#34;a= %v\n&amp;#34;,a) fmt.Print
     
     <item>
       <title>从gopath到gomod</title>
-      <link>http://blog.zhang.today/post/go/%E4%BB%8Egopath%E5%88%B0gomod/</link>
+      <link>http://47.98.216.98:8003/post/go/%E4%BB%8Egopath%E5%88%B0gomod/</link>
       <pubDate>Mon, 18 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/go/%E4%BB%8Egopath%E5%88%B0gomod/</guid>
+      <guid>http://47.98.216.98:8003/post/go/%E4%BB%8Egopath%E5%88%B0gomod/</guid>
       <description>本文不只局限在go语言，想从计算机语言的角度出发，从为什么需要环境变量讲起，一次性讲明白关于go的依赖，环境变量，gomod等一系列概念
  为什么需要环境变量？ 除了html之类的文本标记语言之外，无论是java还是go，又或是别的语言，基本都需要环境变量。我们基本上能看到，每种语言的第一课都是配置环境变量，比如，设置javabin，javahome之类的，go语言的话就是gopath，gobin。
 每次配置这些东西，如果没有搞清楚原理，那几乎是遇到问题，就要研究半天，所以这里想一次性讲明白底层的原理。</description>

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>computer on LongAgo</title>
-    <link>http://blog.zhang.today/categories/computer/</link>
+    <link>http://47.98.216.98:8003/categories/computer/</link>
     <description>Recent content in computer on LongAgo</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2020,all rights reserved.</copyright>
     <lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://blog.zhang.today/categories/computer/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://47.98.216.98:8003/categories/computer/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>计算机系统概览</title>
-      <link>http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A7%88/</link>
+      <link>http://47.98.216.98:8003/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A7%88/</link>
       <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A7%88/</guid>
+      <guid>http://47.98.216.98:8003/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A7%88/</guid>
       <description> 这篇文章是为了解释计算机中什么是进程而写的，同时也为了复习计算机操作系统的相关知识。
  我们在谈什么？ 当我们在谈计算机系统的时候，我们究竟在谈什么？个人认为，当我们在谈计算机系统的时候，就已经在很大程度上抛开了程序员的某些特性，我们不仅仅是一个写代码的人，同时也是一个设计师，就像我们中国美丽的传说，女娲造人，盘古开天地一样，我们是在设计一整套规则,在这套规则下，一生二二生三三生万物，必须能够自然运转。所以，我们要转变思路，抛开代码里的，01010101011100，设计不是非此即彼，很难做到具象的理解，就像很多漫画科普计算机的文，我觉得其实误区不可谓不大，太难用具体的东西来描述，这时候语言的局限性就来了。如果开发系统，那就去读《unix内核编程》，《计算机操作系统》之类的书，如果想做到整体明白，不妨看看此文。代表个人理解，仅做参考。
 在研究计算机系统的过程中，我们常从两个角度分析问题，即：
@@ -36,10 +36,10 @@ A指令包括但不限于:
     
     <item>
       <title>消息队列nsq工作流程解析（一）---nsqd组件.md</title>
-      <link>http://blog.zhang.today/post/go/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/</link>
+      <link>http://47.98.216.98:8003/post/go/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/</link>
       <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/go/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/</guid>
+      <guid>http://47.98.216.98:8003/post/go/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97nsq%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90%E4%B8%80-nsqd%E7%BB%84%E4%BB%B6/</guid>
       <description> 这系列文章我想从0开始，在读者的心中构建一个完整的nsq消息队列模型 包括但不限于以下知识点
  nsq整体工作流程 nsq各组件工作细节 nsq代码实战 nsq源码解析   那么什么是消息队列呢?我想有必要在学习nsq之前仔细理解。
 什么是nsq？ 这篇文章不是讲nsq如何使用，网上已经有很多对nsq消息队列做名词解释的文章了，关于什么是nsq消息队列，这里可能只做简单的复习。
@@ -64,10 +64,10 @@ nsq的主体：nsqd组件 现在让我们忘记其他两个组件，一步步分
     
     <item>
       <title>hugo搭建及自动部署（二）</title>
-      <link>http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/</link>
+      <link>http://47.98.216.98:8003/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/</link>
       <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/</guid>
+      <guid>http://47.98.216.98:8003/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BA%8C/</guid>
       <description>自动部署 接上篇，将生成的blog静态资源文件部署到服务端。按理说，将html静态资源文件搭配nginx，放到机器上就可以访问了，那这里为什么叫自动部署呢？自动一词体现在哪儿呢？
 按照之前的思路：
 首先配置基于nginx的静态网站，nginx配置里有个目录，将静态文件放到这个目录下，就能通过端口访问。
@@ -78,10 +78,10 @@ $ cat /etc/nginx/nginx.conf user 用户; worker_processes auto; pid /run/nginx.p
     
     <item>
       <title>hugo搭建及自动部署（一）</title>
-      <link>http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</link>
+      <link>http://47.98.216.98:8003/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</link>
       <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.zhang.today/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</guid>
+      <guid>http://47.98.216.98:8003/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/hugo%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%B8%80/</guid>
       <description>hugo搭建 hugo的本质就是一个小程序，然后这个程序会读取指定的目录结构配置，生成对应的静态资源文件（包括html，css，js）。
 关键词：小程序；指定的目录结构；静态资源文件
 以下所有步骤都围绕这是三个关键词进行，以下操作可能会遇到git的push不了，hugo因为环境变量不能运行等问题，请自行google
